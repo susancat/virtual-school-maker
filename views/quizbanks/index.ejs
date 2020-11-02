@@ -1,0 +1,58 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Public Quizzes</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <form action="/quizzes/" method="GET" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="Find me a quiz about...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>             
+        </div>
+    </header>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <div class="col-md-12">
+            <% if(noMatch !== null) { %>
+                <h3><%= noMatch %></h3>
+            <% } %>
+        </div>
+        <% quizzes.forEach(function(quiz){ %>
+            <% if(quiz.public === true) { %>
+                <div class="card cardIndex col-md-6 bg-light mb-3" style="width: 45%; border: 0.5rem solid #fff">
+                    <div class="row">
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 20rem" alt="quiz"> 
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4><%= quiz.title%></h4>
+                                </div>
+                                <p class="card-text">Category: <%= quiz.category %></p>
+                                <p class="card-text">Difficulty: <%= quiz.level %></p>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <% if(quiz.public === false) { %>
+                            <span>Visible to only you</span>
+                        <% } else { %>
+                            <span>Visible to the public</span>
+                        <% } %>
+                        <small class="text-muted"><%= quiz.lastUpdated %></small>
+                        <a href="/quizbank/<%= quiz._id %>" class="btn btn-primary">View the Quiz</a>
+                    </div>
+                </div>
+            <% } %>
+        <%}) %> 
+    </div>  
+</div>
+<%- include("../partials/footer") %>

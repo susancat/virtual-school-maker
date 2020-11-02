@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center" style="max-width:40%; margin: auto;">Create a new class</h1>
+    </div>
+    <div class="row">
+        <div style="width:40%; margin: 25px auto;" data-step="1" data-intro="Create a class here and submit!" data-position="left">
+            <form action="/courses" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="Class Name (required)" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="classID" placeholder="Class ID (required)" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="teacher" placeholder="Teacher's Name (required)" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="tutor" placeholder="Tutor's Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="subject" placeholder="subject">
+                </div>
+                <div class="form-group">
+                    <textarea rows=5 class="form-control" type="text" name="description">Description</textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>
+<script type="text/javascript">
+    if (RegExp('multipage', 'gi').test(window.location.search)) {
+        introJs().setOption("showStepNumbers",false).start()
+    }
+</script>

@@ -1,0 +1,54 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome to Virtual School Maker!</h1>
+            <p>View all Public Quizzes</p>
+            <div class="row">
+                <div class="col-md-3">
+                    <form action="/quizzes/" method="GET" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="Search quiz">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-primary" href="/quizzes/"><i class="fa fa-plus" aria-hidden="true"></i> View your Quizzes</a>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-primary" href="/courses"><i class="fa fa-book" aria-hidden="true"></i> View your Classes</a>
+                </div>
+            </div>             
+        </div>
+    </header>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <div class="col-md-12">
+            <% if(noMatch !== null) { %>
+                <h3><%= noMatch %></h3>
+            <% } %>
+        </div>
+        <% quizzes.forEach(function(quiz){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <!-- if the img has different heights, the layout will mess up -->
+                    <img class="quiz__image" src="<%= quiz.image %>" width="400px" alt="quiz">   
+                    <!-- dont forget <%= %> tag here -->
+                    <div class="caption">
+                        <h4><%= quiz.title%></h4>
+                    </div>
+                    <p><a href="/quizbank/<%= quiz._id %>" class="btn btn-primary">View the Quiz</a></p>
+                </div>
+               
+                
+            </div>
+        <%}) %> 
+    </div>
+    
+    
+    
+</div>
+<%- include("../partials/footer") %>

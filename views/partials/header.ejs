@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual School Maker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" integrity="sha512-63+XcK3ZAZFBhAVZ4irKWe9eorFG0qYsy2CaM5Z+F3kUn76ukznN0cp4SArgItSbDFD1RrrWgVMBY9C/2ZoURA==" crossorigin="anonymous" />
+    <style> 
+        /* Set the border color */ 
+        .custom-toggler.navbar-toggler { 
+            border-color:#fff; 
+        } 
+        /* Setting the stroke to green using rgb values (0, 128, 0) */ 
+          
+        .custom-toggler .navbar-toggler-icon { 
+            background-image: url( 
+            "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
+        } 
+    </style> 
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js@2.9.3/introjs.css">
+    <link href="https://cdn.jsdelivr.net/npm/intro.js@2.9.3/themes/introjs-modern.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-inverse fixed-top bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Virtual School Maker</a>
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/quizbank"><i class="fa fa-cc-discover" aria-hidden="true"></i> Public Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> My Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses"><i class="fa fa-book" aria-hidden="true"></i> My Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports"><i class="fa fa-list" aria-hidden="true"></i> Reports</a>
+                    </li>
+                </ul>
+                <form class="form-inline mr-auto">
+                    <a class="btn btn-outline-dark" href="/quizzes/new" role="button"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;&nbsp;Create</a>
+                </form>
+                <ul class="nav navbar-nav ml-auto">
+                    <% if(!currentUser) { %>
+                        <li class="text-justify"><a href="/login" class="text-decoration-none"><i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;&nbsp;Login&nbsp;&nbsp;</a></li>
+                        <li><a href="/register" class="text-decoration-none"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</a></li>
+                    <% } else { %>
+                        <li><a href="#" class="text-decoration-none"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Signed in as&nbsp;&nbsp;<%= currentUser.username %>&nbsp;&nbsp;</a></li>
+                        <li><a href="/logout" class="text-decoration-none"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a></li>
+                    <% } %>
+                </ul>
+        </div>
+    </div>
+</nav>
+      
+    <div class="container">
+    <% if(error && error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+    <% } %>
+    <% if(success && success.length > 0) { %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+    <% } %>
+    </div>
+    <main class="flex-fill">

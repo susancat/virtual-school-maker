@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+
+<div class="container">           
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">No.of players</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reports.forEach(function(report){ %>     
+                    <% if(currentUser && report.author.id.equals(currentUser._id)) { %>       
+                    <tr>
+                        <th scope="row"><%= report.quizname %></th>
+                        <td><%= report.dateCreated.toLocaleString() %></td>
+                        <td><%= report.players.length %></td>
+                        <td><a class="" href="/reports/<%= report._id %>">view</a></td>
+                    </tr>
+                    <% } %> 
+                <%}) %>   
+            </tbody>
+            </table>          
+    </div>     
+</div>
+<%- include("../partials/footer") %>

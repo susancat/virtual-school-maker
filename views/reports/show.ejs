@@ -1,0 +1,140 @@
+<%- include("../partials/header") %>
+<div class="container">
+      <h3  class="text-center">Report for <%= report.quizname %></h3>
+      <button class="btn btn-sm btn-info" id="byKey">&nbsp;&nbsp;Sort by Name&nbsp;&nbsp;</button>
+      <button class="btn btn-sm btn-info" id="byValue">&nbsp;&nbsp;Sort by Score&nbsp;&nbsp;</button>
+  <div class="canvas d-flex justify-content-center"></div>
+  <a href="/courses/<%= course_id %>/reports">Back to list</a>
+</div>
+
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<script>
+const width = 600;
+const height = 600;
+const margin = {'top': 20, 'right': 20, 'bottom': 100, 'left': 100};
+const graphWidth = width - margin.left - margin.right;
+const graphHeight = height - margin.top - margin.bottom;
+
+const svg = d3.select('.canvas')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
+const graph = svg.append('g')
+  .attr('width', graphWidth)
+  .attr('height', graphHeight)
+  .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+const gXAxis = graph.append('g')
+  .attr('transform', `translate(0, ${graphHeight})`);
+const gYAxis = graph.append('g')
+
+d3.json('/courses/<%= course_id %>/reports/<%= report._id %>/data').then(data => {
+  const y = d3.scaleLinear()
+    .domain([0, d3.max(data.players, d => d.points)])
+    .range([graphHeight, 0]);
+  const x = d3.scaleBand()
+    .domain(data.players.map(d => d.name))
+    .range([0, 500])
+    .paddingInner(0.2)
+    .paddingOuter(0.2);
+  const rects = graph.selectAll('rect')
+    .data(data.players);
+  rects.attr('width', x.bandwidth)
+    .attr('class', 'bar-rect')
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  rects.enter()
+    .append('rect')
+    .attr('class', 'bar-rect')
+    .attr('width', x.bandwidth)
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  const xAxis = d3.axisBottom(x);
+  const yAxis = d3.axisLeft(y)
+    .ticks(5)
+    .tickFormat(d => ` ${d}`);
+  gXAxis.call(xAxis);
+  gYAxis.call(yAxis);
+  gXAxis.selectAll('text')
+    .style('font-size', 14);
+ 
+  gYAxis.selectAll('text')
+    .style('font-size', 14);
+
+  d3.select("#byValue").on("click", function() {
+    data.players.sort(function(a, b) {
+      return d3.descending(a.points, b.points)
+    })
+    x.domain(data.players.map(function(d) {
+      return d.name;
+    }));
+    const rects = graph.selectAll('rect')
+    .data(data.players);
+  rects.attr('width', x.bandwidth)
+    .attr('class', 'bar-rect')
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  rects.enter()
+    .append('rect')
+    .attr('class', 'bar-rect')
+    .attr('width', x.bandwidth)
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  const xAxis = d3.axisBottom(x);
+  const yAxis = d3.axisLeft(y)
+    .ticks(5)
+    .tickFormat(d => ` ${d}`);
+  gXAxis.call(xAxis);
+  gYAxis.call(yAxis);
+  gXAxis.selectAll('text')
+    .style('font-size', 14);
+ 
+  gYAxis.selectAll('text')
+    .style('font-size', 14);
+  })
+
+  d3.select("#byKey").on("click", function() {
+    data.players.sort(function(a, b) {
+      return d3.ascending(a.name, b.name)
+    })
+    x.domain(data.players.map(function(d) {
+      return d.name;
+    }));
+    const rects = graph.selectAll('rect')
+    .data(data.players);
+  rects.attr('width', x.bandwidth)
+    .attr('class', 'bar-rect')
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  rects.enter()
+    .append('rect')
+    .attr('class', 'bar-rect')
+    .attr('width', x.bandwidth)
+    .attr('height', d => graphHeight - y(d.points))
+    .attr('x', d => x(d.name))
+    .attr('y', d => y(d.points));
+  const xAxis = d3.axisBottom(x);
+  const yAxis = d3.axisLeft(y)
+    .ticks(5)
+    .tickFormat(d => ` ${d}`);
+  gXAxis.call(xAxis);
+  gYAxis.call(yAxis);
+  gXAxis.selectAll('text')
+    .style('font-size', 14);
+ 
+  gYAxis.selectAll('text')
+    .style('font-size', 14);
+  })
+});
+
+
+
+</script>
+
+<%- include("../partials/footer") %>

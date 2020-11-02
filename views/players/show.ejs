@@ -1,0 +1,24 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead"><a href="/courses/:id/">View the classes info</a></p>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <div class="caption-full">
+                    <h4 class="pull-right">Student Name: <%= player.name %></h4>
+                    <p class="pull-right">Student ID: <%= player.studentID %></p>
+                    <h4 class="pull-right">Class ID: <%= player.classID %></h4>
+                    <h4 class="pull-right">Points: <%= player.points %></h4>
+                    <h4 class="pull-right">Remark: <%= player.remark %></h4>
+                </div>
+
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

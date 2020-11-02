@@ -1,0 +1,267 @@
+<%- include("../partials/header") %>
+<div class="row">
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <p class="lead"><i class="fa fa-tasks" aria-hidden="true">&nbsp;&nbsp;</i>Assign a Quiz</p>  
+                        </div>
+                        <div class="card-body">
+                            <% quizzes.forEach(function(quiz) { %>
+                                <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                                <div class="card-title row">
+                                    <a href="/quizzes/<%= quiz._id %>"class="card-link col-md-6" style="transform: translateY(5px)"><%= quiz.title %></a>
+                                    <div class="btn-group dropright col-md-3">
+                                        <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="5" data-intro="Choose one of your quiz and click 'Play with this quiz', then 'Pass PIN to email'." data-position="top">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <form action="/courses/<%= course._id %>/reports" method="POST">
+                                            <input type="hidden" name="report[quizid]" value="<%= quiz._id %>">
+                                            <input type="hidden" name="report[quizname]" value="<%= quiz.title %>">
+                                            <button class="dropdown-item" type="submit">Play with this quiz</button>
+                                        </form>
+                                        <form action="/courses/<%= course._id %>/?_method=PUT" method="POST">
+                                            <button class="dropdown-item" name="course[quizid]" value="<%= quiz._id %>">Pass PIN to email</button>
+                                        </form>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#quizPlay" data-id="<%= quiz._id %>">Copy the PIN</a>
+                                        </div>
+                                    </div>                                         
+                                    <hr>
+                                </div>
+                                <% } %> 
+                            <%}) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class='card-title d-flex justify-content-between'><span>Class Name: <%= course.name %>&nbsp;&nbsp;<button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="right" title="Enroll students in a class" data-content="Students are enrolled automatically when they login the Roblox game, you can use any message tool besides our group email, just make sure to share all the following info: class ID, quiz PIN and Private Server Link.">&nbsp;<i class="fas fa-info"></i>&nbsp;</button></span><a id="startButton" class="card-link btn btn-success btn__tour" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a></h4>
+                            <h5 class="card-text d-flex justify-content-around"><span>Class ID: <%= course.classID %></span>&nbsp;&nbsp;&nbsp;&nbsp;<span>Teacher: <%= course.teacher %></span><span class="ml-auto">Subject: <%= course.subject %></span></h5>
+                            <hr>
+                            <p class="card-text"><%= course.description %></p>
+        
+                            <a class="btn btn-xs btn-warning" href="/courses/<%= course._id %>/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                            <form id="del" action="/courses/<%= course._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Delete</button>
+                            </form>       
+                        </div>
+                    </div>
+        
+                    <div class="well mt-5 ml-3 mr-3">
+                        <div class="row">
+                            <div class="col-md-6 ml-3 text-left">
+                                <h5 class=""><i class="fa fa-user" aria-hidden="true"></i> Students' Lastest Activities</h5>
+                            </div>
+                        </div>
+                        <div class="row table-responsive-sm">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Rank</th>
+                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let i = 1 %>
+                                    <% course.players.forEach(function(player){ %>
+                                        <tr>
+                                            <th scope="row"><%= i %></th>
+                                            <td><%= player.name %></td>
+                                            <td><%= player.points %></td>
+                                        </tr>
+                                        <% i = i + 1 %>
+                                    <% }) %>
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- right-side   -->
+    <div class="col-md-3">         
+        <div class="accordion" id="gameAccordion">
+            <div class="card" data-step="1" data-intro="Choose a Roblox game." data-position="left">
+                <div class="card-header">
+                    <p class="lead"><i class="fa fa-gamepad" aria-hidden="true">&nbsp;&nbsp;</i>Choose a game</p>      
+                </div>
+                <p class="card-title mb-0" id="game1">
+                    <button class="btn btn-link btn-block text-left collapsed" style="font-size: 1.2rem;text-decoration: none" type="button" data-toggle="collapse" data-target="#quizTrivia" aria-expanded="false" aria-controls="quizTrivia">Quiz Trivia</button>
+                </p>
+                <div id="quizTrivia" class="collapse" aria-labelledby="game1" data-parent="#gameAccordion">
+                    <div class="card-body">
+                        <a class="btn btn-link" data-step="2" data-intro="Click 'Game Link' and read 'Description' of the game." href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" style="text-decoration: none" target="_blank">Game Link</a>
+                        <div class="mt-2">
+                            <div class="btn-group dropup">
+                                <button class="btn btn-link" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="3" data-intro="Copy the generated link back and click 'Private Server Link' to edit it">
+                                Private Server Link&nbsp;&nbsp;<i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#copyLink">Copy</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#editLink">Edit</a>
+                            </div>
+                            </div>                         
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>           
+        </div>
+        
+        <div class="card">
+            <p class="lead card-header" data-step="6" data-intro="Share the quiz to students via group email" data-disable-interaction="true"><i class="fa fa-address-book" aria-hidden="true"></i><a href="/courses/<%= course._id %>/emails/new" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;Send group emails</a></p>    
+        </div>   
+        <div class="card">
+            <p class="lead card-header"><i class="fa fa-list" aria-hidden="true"></i><a href="/courses/<%= course._id %>/reports" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the reports</a></p>    
+        </div>           
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
+       <div class='col-sm-6'>
+          <div class="form-group">
+             <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                </span>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div> -->
+<!-- modals -->
+<div class="modal fade" id="copyLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Share the link to students!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Copy and share the private server link: <span id="link"><strong ><%= course.serverlink1 %></strong></span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="copyLink()">Copy the link</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">&nbsp;Save the private server links</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/courses/<%= course._id %>/?_method=PUT" method="POST" data-step="4" data-intro="paste the link here and submit AFTER tour" data-position="bottom-middle-aligned">
+                <div class="form-group">
+                    <label for="quizTrivialink">Quiz Trivia: </label>
+                    <input id="quizTrivialink" class="form-control" type="text" name="course[serverlink1]" value="<%= course.serverlink1 %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="quizPlay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Invite students by sharing the quiz PIN: </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="quizid">
+      </div>
+      <div class="modal-footer">
+        <p>Shared with your Class ID together to record students' scores!</p>
+          <button class="btn btn-primary" onclick="copy()">Copy the PIN</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("../partials/footer") %>
+
+<script>
+$('#quizPlay').on('show.bs.modal', function (event) {
+  var quizID = $(event.relatedTarget).data('id');
+  $(this).find(".modal-body").text(quizID);
+});
+
+function copy() {
+    let copyText = document.getElementById("quizid") 
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(copyText);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+}
+
+function copyLink() {
+    let copyText = document.getElementById("link") 
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(copyText);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+}
+
+$('.dropdown-toggle').dropdown()
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+
+<script type="text/javascript">
+    document.getElementById('startButton').onclick = function() {
+      introJs().addHints()  
+      introJs().setOption("exitOnOverlayClick",false)
+      .setOption('doneLabel', 'Next page')
+      .start().
+      oncomplete(function() { 
+          $('#editLink').hide();
+          window.open(
+            '/courses/<%= course._id %>/emails/new?multipage=1',
+            '_blank' 
+        )
+      }).onexit(function(){ $('#editLink').hide();
+      }).onchange(function(targetElement) {
+        // show modal on Step 3
+        if($(targetElement).attr("data-step") == 4) {
+            $('#editLink').show();
+        }   
+        // hide modal on other steps
+        if($(targetElement).attr("data-step") != 4) {
+            $('#editLink').hide();
+        }
+    });
+    };
+    </script>
+
+<script type="text/javascript">
+    $(function () {
+           $('#datetimepicker1').datetimepicker();
+    })
+    </script>

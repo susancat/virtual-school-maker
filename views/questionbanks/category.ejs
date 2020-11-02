@@ -1,0 +1,41 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <p>View all categories of public questions</p>
+            <div class="row">
+                <div class="col-md-3">
+                    <form action="/quizzes/<%= quiz.id %>/questionbank" method="GET" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="Search category">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>             
+        </div>
+    </header>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <div class="col-md-12">
+        </div>
+        <% categories.forEach(function(category){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h4><%= category%></h4>
+                    </div>
+                    <p><a href="/quizzes/<%= quiz._id %>/questionbank/list" class="btn btn-primary">See Question List</a></p>
+                </div>
+               
+                
+            </div>
+        <%}) %> 
+    </div>
+    
+    
+    
+</div>
+<%- include("../partials/footer") %>

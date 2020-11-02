@@ -1,0 +1,119 @@
+<%- include("./partials/header") %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Dashboard</h1>            
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    <% if(currentUser) { %>
+                    <h4 class="card-title">Welcome! <%= currentUser.username %></h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-text">Plan: Basic</h5>
+                    <% } else { %>
+                    <a class="card-link" href="/login">Log In</a>
+                    <% } %>                
+                </div>
+            </div>
+            <div class="card mb-2">
+                <h4 class="card-header">My Classes</h4>
+                    <div class="card-body">
+                        <% courses.forEach(function(course) { %>
+                            <% if(currentUser && course.author.id.equals(currentUser._id)) { %>
+                        <div class="card-title mb-2 text-muted">
+                            <a href="/courses/<%= course._id %>"class="card-link"><%= course.classID %></a>
+                        </div>  
+                        <% } %> 
+                        <%}) %>
+                    </div>                         
+                <div class="card-footer text-muted text-right">
+                    <a href="/courses" class="card-link">See All</a>
+                </div>                                  
+            </div>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h4 class="card-title">Top Picked Games</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <a href="#" class="card-link">Quiz Trivia</a>
+                    </div>
+                    <div class="mb-2">
+                        <a href="#" class="card-link">Lethal Choice</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-2 quickstart">
+                <div class="card-header">
+                    <h4 class="card-title">Quick Guidance for 3 Steps!</h4>
+                </div>
+                <div class="card-body quickstart__body">
+                    <div class="d-flex">
+                        <h5 class="card-text">Start from here to have fun!&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                        <a class="card-link btn__trans btn btn-outline-light" style="color: green;background-color:#fff;" href="javascript:void(0);" id="startButton">&nbsp;New User Tour&nbsp;</a>
+                    </div>       
+                    <div class="quickstart__image d-flex justify-content-center">
+                        <img src="31.svg" alt="quick start 1" style="width: 10%">
+                        <img class="ml-4" src="34.svg" alt="arrow" style="width: 15%">
+                        <img src="32.svg" alt="quick start 2" style="width: 20%">
+                        <img src="34.svg" alt="arrow" style="width: 15%">
+                        <img class="ml-4" src="33.svg" alt="quick start 3" style="width: 11%">
+                    </div>
+                    <div class="quickstart__content d-flex justify-content-around">
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="1" data-intro="Click to try Roblox quiz game, leave Quiz ID blank!" href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" target="_blank">&nbsp;Try a Quiz Game&nbsp;</a>
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="2" data-intro="Click to create your own quiz and questions!" href="/quizzes/new?multipage=1" target="_blank">&nbsp;&nbsp;Create a Quiz&nbsp;&nbsp;</a>
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="3" data-intro="Create a class and enroll students!" href="/courses/new?multipage=1" target="_blank">&nbsp;&nbsp;Assign a Quiz&nbsp;&nbsp;</a>
+                    </div>                 
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h4 class="card-title">My Quizzes</h4>
+                </div>
+                <div class="card-body">
+                    <% quizzes.forEach(function(quiz) { %>
+                        <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                        <div class="card-title mb-2 text-muted">
+                            <a href="/quizzes/<%= quiz._id %>"class="card-link"><%= quiz.title %></a>
+                        </div>
+                        <% } %> 
+                    <%}) %>
+                </div>
+                <div class="card-footer text-right">
+                    <a href="/quizzes" class="card-link">See All</a>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title">Top Picked Public Quizzes</h4>
+                    <button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>
+                </div>
+                <div class="card-body">
+                    coming soon...
+                </div>
+                <div class="card-footer text-right">
+                    <a href="/quizbank" class="card-link">See More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("./partials/footer") %>
+<script type="text/javascript">
+document.getElementById('startButton').onclick = function() {
+    introJs().addHints()
+    introJs().start()
+};
+</script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>

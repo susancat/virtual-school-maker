@@ -1,0 +1,105 @@
+body {
+    padding-top: 70px;
+}
+
+.cardIndex {
+    transition: all .2s;  
+}
+
+.cardIndex:hover {
+    box-shadow: 0 1rem 2rem rgba(black, .15);
+    transform: translateY(-3px);
+}
+
+.flex-fill {
+    min-height:80vh;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.jumbotron {
+    background-image: url(../header.jpeg);
+    background-size: cover;
+    color: #fff;
+}
+
+.quickstart {
+    background-image: linear-gradient(to left, rgb(19, 167, 19), rgb(6, 141, 6));
+    color:#fff;
+}
+
+.btn__trans {
+    color:#fff;
+    padding: 3px;    
+    transition: all .2s;  
+}
+
+.btn__trans:hover {
+    box-shadow: 0 1rem 2rem rgba(black, .15);
+    color: rgb(19, 167, 19);
+    transform: translateY(-2px);
+}
+
+.btn__trans:active {
+    transform: translateY(0);
+}
+
+.btn__tour {
+    padding: 3px;    
+    transition: all .2s;  
+}
+
+.btn__tour:hover {
+    box-shadow: 0 1rem 2rem rgba(black, .15);
+    transform: translateY(-2px);
+}
+
+.btn__tour:active {
+    transform: translateY(0);
+}
+/* bar chart ***************************************************** */
+rect.bar-rect { fill: green; }
+    rect.bar-rect:hover { 
+      fill:rgb(6, 153, 6);
+      transition: all .2s;
+    }
+/* bar chart ***************************************************** */
+.footer {
+    color: #fff;
+    margin: 20px auto;
+}
+
+#del {
+    display: inline;
+}
+
+#map {
+    height: 20rem;
+}
+
+.modal{
+    z-index:1000000;
+}
+
+.introjs-fixParent.modal{
+    z-index:10000000 !important;
+}
+
+/* .introjs-fixParent.navbar{
+    z-index:10000000 !important;
+} */
+
+.introjs-helperNumberLayer {
+    z-index: 9999999999 !important;
+}
+
+.introjs-hint-pulse {
+    background-color: rgba(249, 219, 4, .5) !important;
+    border: 5px solid rgba(243, 247, 5, .90) !important;
+}

@@ -1,0 +1,42 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center" style="width:45%; margin: 25px auto;">Create a new email for <%= course.name%></h1>
+    </div>
+    <div class="row">
+        <div style="width:40%; margin: 25px auto;">
+            <form action="/courses/<%= course._id %>/emails" method="POST">
+                <div class="form-group">
+                    <textarea data-step="2" data-intro="Refresh this page, copy students' emails in." data-position="left" class="form-control" type="text" name="to" placeholder="Input students' email here, seperated by ',' (required)" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input data-step="3" data-intro="Finish other parts of the form, 'Send' the mail and done!" data-position="left" class="form-control" type="text" name="from" placeholder="from: (Sender's Email, required)" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="subject" placeholder="Subject (required)" required>
+                </div>
+                <div class="form-group">
+                    <textarea data-step="1" data-intro="Now you could submit/pass the Private Server Link and quiz PIN from last page." data-position="left" class="form-control" rows=10 type="text" name="html" required>&#183;&nbsp;Class ID: <%= course.classID %>&#13;&#10;&#183;&nbsp;Private server link: <%= course.serverlink1 %>&#13;&#10;&#183;&nbsp;Quiz PIN: <%= course.quizid %>&#13;&#10;
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Send</button>
+                </div>
+            </form>
+            <a href="/courses/<%= course._id %>">Back to Class</a>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
+<script type="text/javascript">
+    if (RegExp('multipage', 'gi').test(window.location.search)) {
+        introJs().start()
+    }
+    // let quizid = localStorage.getItem('quizid');
+// if (localStorage.getItem(quizid) != null) {
+//   document.getElementById("quizid").innerHTML = localStorage.getItem(quizid);
+// }
+</script>
+

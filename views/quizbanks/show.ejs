@@ -1,0 +1,45 @@
+<%- include("../partials/header") %>
+<div class="row">
+    <div class="col-md-4">
+        <img class="card-img ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="quiz">  
+        <div class="container mt-2 ml-2">
+            <h4>Quiz Name: <a><%= quiz.title%></a></h4>
+            <h6>Category: <%= quiz.category%></h6>
+            <h6 class="pull-right">Difficulty level: <%= quiz.level %></h6>
+            <div class="mb-2">
+                <a href="/quizbank/<%= quiz._id %>/edit" class="btn btn-primary">Use this Quiz</a>
+            </div>
+            <p class="mt-2"><em>Created By <%= quiz.author.username %></em></p>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="well">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 text-left">
+                        <h4 class=""><i class="fa fa-question" aria-hidden="true"></i> Question</h4>
+                    </div>
+                    <hr>
+                </div>
+                <% quiz.questions.forEach(function(question){ %>
+                <div class="card col-md-12 bg-light border-light mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= question.text %></h5>
+                                <p class="card-text">Category: <%= question.category %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Difficulty: <%= question.level %></p>
+                            <p class="card-text">option1: <%= question.option1 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option2: <%= question.option2 %></p>
+                            <p class="card-text">option1: <%= question.option3 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option2: <%= question.option4 %></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center">
+                            <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 15rem" alt="question">      
+                          </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("../partials/footer") %>
