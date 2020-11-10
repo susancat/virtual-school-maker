@@ -2,21 +2,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <p class="lead"><a href="/courses/:id/">View the classes info</a></p>
+            <p class="lead"><a href="/courses/<%= course_id %>/">View the classes info</a></p>
         </div>
         <div class="col-md-9">
-            <div class="thumbnail">
-                <div class="caption-full">
+            <div class="card">
+                <div class="card-body">
                     <h4 class="pull-right">Student Name: <%= player.name %></h4>
-                    <p class="pull-right">Student ID: <%= player.studentID %></p>
+                    <h4 class="pull-right">Student ID: <%= player.studentID %></h4>
                     <h4 class="pull-right">Class ID: <%= player.classID %></h4>
                     <h4 class="pull-right">Points: <%= player.points %></h4>
+                    <h4 class="pull-right">Points: <%= player.cash %></h4>
                     <h4 class="pull-right">Remark: <%= player.remark %></h4>
                 </div>
-
-            </div>
-
-           
+                <div class="card-footer">
+                    <a class="btn btn-xs btn-warning" href="/courses/<%= course_id %>/player-data/<%=player.userID %>/edit">&nbsp;Edit&nbsp;</a>
+                    <form id="del" action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=DELETE" method="POST">
+                    <button class="btn btn-xs btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>          
         </div>
     </div>
 </div>

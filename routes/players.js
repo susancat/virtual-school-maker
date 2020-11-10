@@ -1,19 +1,25 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const Course = require("../models/course");
 const Player = require("../models/player");
 const middleware = require("../middleware");
 
 router.get("/", (req, res) => {
-    res.send("First steps on Fetching Player Data!")
-    // res.render("./players/show");
-  })
+    Player.find({}, function(err,allPlayer){
+      if(err){
+        console.log(err)
+      } else {
+        res.json(allPlayer)
+      }
+    })
+})
 
   router.get("/:id", async (req, res) => {
+    // console.log(req.params)
+    // console.log(req.body)
     async function playerDataCheck() {
-        const playerData = await Player.findOne({ userID: `${req.params.id}` })
-        // We use the mongoose findOne method to check if a record exists
-       // with the given ID, so use "get" here
+        const playerData = await Player.findOne({ userID: `${req.params.id}`})
+        // check if a record exists with userID and classID
     
         if (playerData) {
          // If exists return the data
@@ -23,6 +29,7 @@ router.get("/", (req, res) => {
           const newPlayerData = new Player({
             userID: `${req.params.id}`,
             points: 0,
+            cash: 0,
             name:"",
             studentID:"",
             classID: "",
@@ -39,28 +46,31 @@ router.get("/", (req, res) => {
       res.json(await playerDataCheck());
   })
 
-  //student new by teacher--routes conflict
-// router.get("/new", function(req, res){
-//   Course.findById(req.params.id, function(err, course){
-//       if(err){
-//           console.log(err);
-//       }else {
-//           res.render("./players/new", {course: course});
-//           // means quiz used in question (find matched) equals to quiz found by findById method
-//       }
-//   })
+router.get("/new", function(req, res){
+  Course.findById(req.params.id, function(err, course){
+      if(err){
+          console.log(err);
+      }else {
+          res.render("./players/new", {course: course});
+      }
+  })
   
-// })
+})
 
   router.post("/update-info/:id", async(req,res) => {
-    const { name, studentID, classID, points, quizID, remark } = req.body;
-
+    const { name, studentID, classID, points, cash, quizID,remark } = req.body;
+//classID: `${req.params.classID}` } would be checked
     await Player.findOneAndUpdate(
       { userID: `${req.params.id}` },
         { $set: 
           { points: points }}
     );
     res.send("Updated points.");
+    await Player.findOneAndUpdate(
+      { userID: `${req.params.id}` },
+        { $set: 
+          { cash: cash }}
+    );
     await Player.findOneAndUpdate({
       userID: `${req.params.id}` },
       { $set: 
@@ -108,6 +118,7 @@ router.get("/", (req, res) => {
             player.classID = classID;
             player.quizID = quizID;
             player.points = points;
+            player.cash = cash;
             player.remark = remark;
             await player.save();
               //add something to delete duplicated 
@@ -118,24 +129,35 @@ router.get("/", (req, res) => {
       }
   });
 });
-
+router.get("/:player_id/view", async function(req,res){
+// console.log(req.params)
+//req.body = {}
+  await Player.findOne({ userID: `${req.params.player_id}`}, function(err, foundPlayer){
+    if(err) {
+        res.redirect("back");
+    } else {
+        res.render("players/show", { course_id: req.params.id, player: foundPlayer });
+    }
+  })
+});
 //EDIT student ROUTE
 router.get("/:player_id/edit", async function(req,res){
   //need to find the question id
-  await Player.findById(req.params.player_id, function(err, foundPlayer){
+  await Player.findOne({ userID: `${req.params.player_id}`}, function(err, foundPlayer){
       if(err) {
           res.redirect("back");
       } else {
           res.render("players/edit", { course_id: req.params.id, player: foundPlayer });
       }
-  })
+    })
 });
 //UPDATE student ROUTE, in this code, one player only one record
 router.put("/:player_id", async function(req, res){
-  await Player.findOneAndUpdate( req.body.userID, req.body.player, function (err,updatedPlayer){
+  await Player.findOneAndUpdate({ userID: `${req.params.player_id}`}, req.body.player, function (err,updatedPlayer){
       if(err) {
           res.redirect("back");
       }else {
+        //console.log(req.body) //body works
           req.flash("success", "Student's record updated successfully!")
           res.redirect("/courses/" + req.params.id);
       }
@@ -144,7 +166,7 @@ router.put("/:player_id", async function(req, res){
 
 //DELETE student ROUTE
 router.delete("/:player_id", function(req, res){
-  Player.findByIdAndRemove( req.params.player_id, function(err){
+  Player.findOneAndRemove({ userID: `${req.params.player_id}`}, function(err){
       if(err) {
           res.redirect("back");
       } else {

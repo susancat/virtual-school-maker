@@ -28,8 +28,8 @@ const questionRoutes = require("./routes/questions"),
       emailRoutes = require("./routes/emails"),
       quizbankRoutes = require("./routes/quizbanks"),
       questionBankRoutes = require("./routes/questionbanks"),
-      reportRoutes = require("./routes/reports")
-
+      reportRoutes = require("./routes/reports"),
+      shareRoutes = require("./routes/assignments")
 //extract data from request body and turn to JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -80,7 +80,8 @@ app.use("/courses", courseRoutes);
 app.use("/courses/:id/player-data", playerRoutes);
 app.use("/courses/:id/emails", emailRoutes);
 app.use("/courses/:id/reports", reportRoutes);
+app.use("/courses/:id/assignments", shareRoutes);
 
 app.listen(process.env.PORT || 3000, function(){
-    console.log("Quiz Trivia has started");
+    console.log("Virtual School Maker has started");
 });

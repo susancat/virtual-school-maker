@@ -7,7 +7,7 @@ const middleware = require("../middleware");
 // const Mailer = require('../services/Mailer');
 // const emailTemplate = require('../services/emailTemplates/emailTemplate');
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey("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");
+sgMail.setApiKey("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");
 
 router.get("/new", middleware.isLoggedIn, function(req, res){
     Course.findById(req.params.id, function(err, course){

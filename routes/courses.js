@@ -66,7 +66,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
                 if(err){
                     console.log(err);
                 }else {
-                    res.render("./courses/show", { course: foundCourse, quizzes: allQuizzes });
+                    res.render("./courses/show", { course: foundCourse, quizzes: allQuizzes, course_id:req.params.id });
                 }
             });
         }

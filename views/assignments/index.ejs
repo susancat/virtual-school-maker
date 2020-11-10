@@ -1,0 +1,38 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Assignments</h1>
+            <div class="row">
+                <div class="col-md-3 ml-auto">
+                    <a class="btn btn-success" href="/courses/<%= course._id %>/assignments/new"><i class="fa fa-plus" aria-hidden="true"></i> Add New Assignment</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        
+        <% course.assignments.forEach(function(assignment){ %>
+            <div class="card col-md-12 bg-light border-light mb-3">
+                <div class="row"> 
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= assignment.title %></h5>
+                            <p class="card-text"><%= assignment.text %>&nbsp;&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <% if(currentUser && course.author.id.equals(currentUser._id)) { %>
+                            <a href="/courses/<%= course._id %>/assignments/<%= assignment._id %>/edit" class="btn btn-xs btn-warning mr-2" >&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                            <form action="/courses/<%= course._id %>/assignments/<%= assignment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>
+<%- include("../partials/footer") %>
