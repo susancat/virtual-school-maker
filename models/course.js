@@ -24,6 +24,10 @@ const courseSchema = new Schema ({
             },
         username: String
     },
+    assignments: [{
+        type: Schema.Types.ObjectId,
+        ref: "Share"
+    }],
     emails: [{
         type: Schema.Types.ObjectId,
         ref: "Email"

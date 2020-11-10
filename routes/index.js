@@ -5,7 +5,9 @@ const User = require("../models/user");
 const QuestionBank = require("../models/questionbank");
 const Quiz = require("../models/quiz");
 const Course = require("../models/course");
+const Player = require("../models/player");
 const Report = require("../models/report");
+const Share = require("../models/share");
 const middleware = require("../middleware");
 
 router.get("/", middleware.isLoggedIn, async function(req, res){
@@ -98,6 +100,25 @@ router.get("/reports/:id/data", middleware.isLoggedIn, async function(req,res){
             console.log(err)
         } else {
             res.json(report)
+        }
+    })
+})
+router.get("/assignments/:id", async function(req,res){
+    await Share.findById(req.params.id, function(err,assignment){
+        if(err) {
+            console.log(err)
+        } else {
+            res.json(assignment)
+        }
+    })
+})
+
+router.get("/players/:id",async function(req,res){
+    await Player.findOne({ userID: `${req.params.id}`}, function(err,player){
+        if(err) {
+            console.log(err)
+        } else {
+            res.json(player)
         }
     })
 })

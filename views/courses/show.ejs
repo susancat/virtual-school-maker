@@ -64,15 +64,25 @@
                                         <th scope="col">Rank</th>
                                         <th scope="col">Student Name</th>
                                         <th scope="col">Points</th>
+                                        <th scope="col">Cash</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% let i = 1 %>
-                                    <% course.players.forEach(function(player){ %>
+                                    <% course.players.forEach(function(player){ %>      
                                         <tr>
                                             <th scope="row"><%= i %></th>
-                                            <td><%= player.name %></td>
+                                            <td><a href="/courses/<%= course_id %>/player-data/<%=player.userID %>/view"class="card-link col-md-6" style="transform: translateY(5px)"><%= player.name %></a></td>
                                             <td><%= player.points %></td>
+                                            <td class="row col-md-12"> 
+                                                <form action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=PUT" method="POST">
+                                                    <div class="form-inline ml-auto">
+                                                        <%= player.cash %> 
+                                                        <input type="text" class="ml-3" style="width:20%" name="player[cash]" value="<%= player.cash %>" >
+                                                        <button class="btn btn-sm btn-success ">update</button>
+                                                    </div>
+                                                </form>
+                                        </td>
                                         </tr>
                                         <% i = i + 1 %>
                                     <% }) %>
@@ -111,6 +121,26 @@
                         
                     </div>
                 </div>
+                <p class="card-title mb-0" id="game1">
+                    <button class="btn btn-link btn-block text-left collapsed" style="font-size: 1.2rem;text-decoration: none" type="button" data-toggle="collapse" data-target="#quizTrivia" aria-expanded="false" aria-controls="quizTrivia">Lobby</button>
+                </p>
+                <div id="quizTrivia" class="collapse" aria-labelledby="game1" data-parent="#gameAccordion">
+                    <div class="card-body">
+                        <a class="btn btn-link" href="https://www.roblox.com/games/5887877906/Lobby-test-1" style="text-decoration: none" target="_blank">Game Link</a>
+                        <div class="mt-2">
+                            <div class="btn-group dropup">
+                                <button class="btn btn-link" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Private Server Link&nbsp;&nbsp;<i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#copyLink2">Copy</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#editLink2">Edit</a>
+                            </div>
+                            </div>                         
+                        </div>
+                        
+                    </div>
+                </div>
             </div>           
         </div>
         
@@ -119,6 +149,9 @@
         </div>   
         <div class="card">
             <p class="lead card-header"><i class="fa fa-list" aria-hidden="true"></i><a href="/courses/<%= course._id %>/reports" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the reports</a></p>    
+        </div>   
+        <div class="card">
+            <p class="lead card-header"><i class="far fa-copy"></i><a href="/courses/<%= course._id %>/assignments" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the assignments</a></p>    
         </div>           
     </div>
 </div>
@@ -181,6 +214,50 @@
     </div>
 </div>
 
+<div class="modal fade" id="copyLink2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Share the link to students!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Copy and share the private server link: <span id="link"><strong ><%= course.serverlink2 %></strong></span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="copyLink()">Copy the link</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editLink2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">&nbsp;Save the private server links</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/courses/<%= course._id %>/?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="quizTrivialink">Quiz Trivia: </label>
+                    <input id="quizTrivialink" class="form-control" type="text" name="course[serverlink1]" value="<%= course.serverlink2 %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
 <div class="modal fade" id="quizPlay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -232,6 +309,7 @@ $('.dropdown-toggle').dropdown()
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
 </script>
 
 <script type="text/javascript">
@@ -263,5 +341,5 @@ $(function () {
 <script type="text/javascript">
     $(function () {
            $('#datetimepicker1').datetimepicker();
-    })
-    </script>
+    })                                                                          
+</script>
