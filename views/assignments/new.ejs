@@ -1,0 +1,22 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <h1 class="text-center" style="width:40%; margin: auto;">Share something with <%= course.name %> students</h1>
+    </div>
+    <div class="row">
+        <div style="width:40%; margin: 25px auto;">
+            <form action="/courses/<%= course._id %>/assignments" method="POST">   
+                <div class="form-group">
+                    <input class="form-control" type="text" name="title" placeholder="Title (required)" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows=5 class="form-control" type="text" name="text" placeholder="share something..."></textarea>
+                </div>
+                <div class="form-group mt-2">
+                    <button class="btn btn-lg btn-primary btn-block">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+<%- include("../partials/footer") %>
