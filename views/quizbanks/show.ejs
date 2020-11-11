@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
-<div class="row">
+<div class="row mt-5" id="heading-jumbotron">
     <div class="col-md-4">
-        <img class="card-img ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="quiz">  
+        <img class="card-img ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>"  alt="">  
         <div class="container mt-2 ml-2">
             <h4>Quiz Name: <a><%= quiz.title%></a></h4>
             <h6>Category: <%= quiz.category%></h6>
@@ -15,9 +15,9 @@
     <div class="col-md-8">
         <div class="well">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3 text-left">
-                        <h4 class=""><i class="fa fa-question" aria-hidden="true"></i> Question</h4>
+                <div class="row" style="width: 100%;">
+                    <div class="col-md-3 text-left" style="width: 100% !important;">
+                        <h4 class="" style="width: 200%;"><i class="fa fa-question" aria-hidden="true"></i> Question</h4>
                     </div>
                     <hr>
                 </div>
@@ -28,8 +28,8 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%= question.text %></h5>
                                 <p class="card-text">Category: <%= question.category %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Difficulty: <%= question.level %></p>
-                            <p class="card-text">option1: <%= question.option1 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option2: <%= question.option2 %></p>
-                            <p class="card-text">option1: <%= question.option3 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option2: <%= question.option4 %></p>
+                            <p class="card-text">Option 1: <%= question.option1 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Option 2: <%= question.option2 %></p>
+                            <p class="card-text">Option 3: <%= question.option3 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Option 4: <%= question.option4 %></p>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center">

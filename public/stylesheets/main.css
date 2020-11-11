@@ -121,4 +121,8 @@ rect.bar-rect { fill: green; }
         margin-right: auto;
     }
 
+    #info-image {
+        margin-left: 10% !important;
+    }
+
 }
