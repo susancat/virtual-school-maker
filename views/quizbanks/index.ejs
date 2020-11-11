@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 
 <div class="container">
-    <header class="jumbotron" style="background-image: url(https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: 100%; background-position: 100%;">
+    <header class="jumbotron mt-5" id="heading-jumbotron" style="background-image: url(https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: 100%; background-position: 100%;">
         <div class="container" data-aos="fade" data-aos-duration="1000">
             <h1 class="font-weight-bold text-muted pb-2">Public Quizzes</h1>
             <div class="row">
@@ -26,7 +26,7 @@
         </div>
         <% quizzes.forEach(function(quiz){ %>
             <% if(quiz.public === true) { %>
-                <div class="card cardIndex col-md-6 bg-light mb-3" style="width: 45%; border: 0.5rem solid #fff" data-aos="fade" data-aos-duration="1500">
+                <div class="card cardIndex col-md-6 bg-light mb-3" id="info-card" style="width: 45%; border: 0.5rem solid #fff" data-aos="fade" data-aos-duration="1500">
                     <div class="row">
                         <div class="col-md-4 d-flex align-items-center">
                             <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 20rem" alt="quiz"> 

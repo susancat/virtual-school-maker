@@ -104,4 +104,21 @@ rect.bar-rect { fill: green; }
     #signinbox {
         width: 80% !important;
     }
+
+    #heading-jumbotron{
+        margin-top: 2% !important;
+    }
+
+    #info-card {
+        width: 90% !important;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    #info-card img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }
