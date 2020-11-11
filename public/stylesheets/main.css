@@ -125,4 +125,17 @@ rect.bar-rect { fill: green; }
         margin-left: 10% !important;
     }
 
+    #navbar_stuff {
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
+    #navbar_thing {
+        padding-left: 0 !important;
+    }
+
+    #create_div{
+        width: 80% !important;
+    }
+
 }
