@@ -110,7 +110,7 @@ rect.bar-rect { fill: green; }
     }
 
     #info-card {
-        width: 90% !important;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;

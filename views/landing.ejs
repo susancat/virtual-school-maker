@@ -1,13 +1,13 @@
 <%- include("./partials/header") %>
 <div class="container">
-    <header class="jumbotron">
-        <div class="container">
-            <h1>Dashboard</h1>            
+    <header class="jumbotron mt-5" id="heading-jumbotron" data-aos="fade" data-aos-duration="500" style="background-image: url(https://images.pexels.com/photos/356043/pexels-photo-356043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center;">
+        <div class="container pt-5">
+            <h1 class="pb-5 text-light font-weight-bold"><%= currentUser.username %>'s Dashboard</h1>            
         </div>
     </header>
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-4">
-            <div class="card mb-2">
+            <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <div class="card-header">
                     <% if(currentUser) { %>
                     <h4 class="card-title">Welcome! <%= currentUser.username %></h4>
@@ -19,7 +19,7 @@
                     <% } %>                
                 </div>
             </div>
-            <div class="card mb-2">
+            <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <h4 class="card-header">My Classes</h4>
                     <div class="card-body">
                         <% courses.forEach(function(course) { %>
@@ -34,7 +34,7 @@
                     <a href="/courses" class="card-link">See All</a>
                 </div>                                  
             </div>
-            <div class="card mb-2">
+            <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <div class="card-header">
                     <h4 class="card-title">Top Picked Games</h4>
                 </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="card mb-2 quickstart">
+            <div class="card mb-2 quickstart" data-aos="fade-down" data-aos-duration="1500">
                 <div class="card-header">
                     <h4 class="card-title">Quick Guidance for 3 Steps!</h4>
                 </div>
@@ -72,24 +72,32 @@
                     </div>                 
                 </div>
             </div>
-            <div class="card mb-2">
+            <div class="card mb-2" data-aos="fade-left" data-aos-duration="1500">
                 <div class="card-header">
                     <h4 class="card-title">My Quizzes</h4>
                 </div>
                 <div class="card-body">
+                    <% var counter = 0 %>
                     <% quizzes.forEach(function(quiz) { %>
                         <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
-                        <div class="card-title mb-2 text-muted">
-                            <a href="/quizzes/<%= quiz._id %>"class="card-link"><%= quiz.title %></a>
-                        </div>
+                            <% counter++ %>
+                            <div class="card-title mb-2 text-muted">
+                                <a href="/quizzes/<%= quiz._id %>"class="card-link"><%= quiz.title %></a>
+                            </div>
                         <% } %> 
                     <%}) %>
+                    <% if(counter==0) {%>
+                        <div class="card-title mb-2 text-muted">
+                            <h3>Looks like you have no quizzes</h3>
+                            <a href="/quizzes/new"class="card-link">Create One Now!</a>
+                        </div>
+                    <% } %> 
                 </div>
                 <div class="card-footer text-right">
                     <a href="/quizzes" class="card-link">See All</a>
                 </div>
             </div>
-            <div class="card mb-2">
+            <div class="card mb-2" data-aos="fade-up" data-aos-duration="1500">
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title">Top Picked Public Quizzes</h4>
                     <button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>

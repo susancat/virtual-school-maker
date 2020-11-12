@@ -1,11 +1,11 @@
 <%- include("../partials/header") %>
 
 <div class="container">
-    <header class="jumbotron">
-        <div class="container">
-            <h1>My Classes</h1>
+    <header class="jumbotron mt-5" id="heading-jumbotron" style="background-image: url(https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: 100%; background-position: center;">
+        <div class="container" data-aos="fade" data-aos-duration="1000">
+            <h1 class="font-weight-bold text-light pb-2">My Classes</h1>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 pt-2">
                     <form action="/courses/" method="GET" class="form-inline">
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search class">
@@ -15,7 +15,7 @@
                     </div>
                     </form>
                 </div>
-                <div class="col-md-3 ml-auto">
+                <div class="col-md-3 ml-auto pt-2">
                     <a class="btn btn-success" href="/courses/new"><i class="fa fa-plus" aria-hidden="true"></i> Create New Class</a>
                 </div>
             </div>             
@@ -29,9 +29,11 @@
             <% } %>
         </div>
         <!-- class is a reserved word so use course here -->
+        <% var counter = 0 %>
         <% courses.forEach(function(course) { %>
             <% if(currentUser && course.author.id.equals(currentUser._id)) { %>
-                <div class="card cardIndex col-md-6 bg-light mb-3" style="width: 45%; border: 0.5rem solid #fff">
+                <%counter++%>
+                <div class="card cardIndex col-md-6 bg-light mb-3" id="info-card" style="width: 45%; border: 0.5rem solid #fff" data-aos="fade" data-aos-duration="1500">
                     <div class="row">
                         <div class="card-body">
                             <h4 class="card-title"><%= course.name %></h4>
@@ -42,9 +44,14 @@
                 </div>
             <% } %> 
         <%}) %> 
-    </div>
-    
-    
-    
+        <% if(counter == 0 && noMatch == null) { %>
+            <div class="container">
+                <h1 class="font-weight-bold">Looks like you haven't made a class yet</h1>
+                <div class="ml-auto mt-5">
+                    <a class="btn btn-success" href="/quizzes/new"><i class="fa fa-plus" aria-hidden="true"></i> Create One Now!</a>
+                </div>
+            </div>
+        <%}%>
+    </div>   
 </div>
 <%- include("../partials/footer") %>
