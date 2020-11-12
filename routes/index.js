@@ -46,7 +46,7 @@ router.post("/register", function(req, res){
                     req.flash("error","User name is already used!")
                     return res.render("register");
                 }passport.authenticate("local")(req, res, function(){
-                    req.flash("success","Welcome to Virtual School Maker! " + user.username);   
+                    req.flash("success","Welcome to Quiz Trivia! " + user.username);   
                     res.redirect("/");
                 });
             });

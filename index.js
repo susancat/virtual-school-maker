@@ -3,7 +3,10 @@ const express = require("express"),
       mongoose = require("mongoose"),
       flash = require ("connect-flash"),
       passport = require("passport"),
-      methodOverride = require("method-override")
+      methodOverride = require("method-override"),
+      logger = require('morgan'),
+    //   createError = require('http-errors'),
+      cookieParser = require('cookie-parser');
 
 require('./services/passport');
 
@@ -20,13 +23,18 @@ const questionRoutes = require("./routes/questions"),
       shareRoutes = require("./routes/assignments")
 
 //extract data from request body and turn to JSON
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
+app.use(cookieParser());
 app.use(express.static(__dirname + "/public"));
 app.use('/static', express.static(__dirname+"/src"));
 app.use(methodOverride("_method"));
-
+// catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//     next(createError(404));
+// });
 
 app.set("view engine", "ejs");
 

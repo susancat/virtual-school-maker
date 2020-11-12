@@ -81,11 +81,11 @@
                             </div>
                         </div>
                         <div class="row table-responsive-sm">
-                            <table class="table">
+                            <table class="table text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col">Rank</th>
-                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Points</th>
                                         <th scope="col">Cash</th>
                                     </tr>
@@ -98,11 +98,11 @@
                                             <td><a href="/courses/<%= course_id %>/player-data/<%=player.userID %>/view"class="card-link col-md-6" style="transform: translateY(5px)"><%= player.name %></a></td>
                                             <td><%= player.points %></td>
                                             <td class="row col-md-12"> 
-                                                <form action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=PUT" method="POST">
-                                                    <div class="form-inline ml-auto">
+                                                <form action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=PUT" method="POST" style="padding-right:0">
+                                                    <div class="inline">
                                                         <%= player.cash %> 
                                                         <input type="text" class="ml-3" style="width:20%" name="player[cash]" value="<%= player.cash %>" >
-                                                        <button class="btn btn-sm btn-success ">update</button>
+                                                        <button class="btn btn-sm btn-success ">Reward</button>
                                                     </div>
                                                 </form>
                                             </td>

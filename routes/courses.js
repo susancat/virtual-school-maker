@@ -60,7 +60,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){ //notice about "/"
 
 //show certain particular class with more details
 router.get("/:id", middleware.isLoggedIn, function(req, res){
-    Course.findById(req.params.id).populate({path:"players", options: {sort:'-points'}}).exec(function(err, foundCourse){
+    Course.findById(req.params.id).populate("games").populate({path:"players", options: {sort:'-points'}}).exec(function(err, foundCourse){
         if(err) {
             console.log(err);
         }else{
