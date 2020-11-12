@@ -16,7 +16,7 @@ router.get("/", middleware.isLoggedIn, async function(req,res){
     });
 })
 
-router.post("/", async function(req, res){ 
+router.post("/", middleware.isLoggedIn, async function(req, res){ 
     // console.log(req.body)
     const { quizname,quizid } = req.body.report;
     const players = [];
@@ -51,7 +51,7 @@ router.post("/", async function(req, res){
     });
 });
 
-router.get("/:report_id", async function(req, res){
+router.get("/:report_id", middleware.isLoggedIn, async function(req, res){
     await Report.findById(req.params.report_id, function(err, foundReport){
         if(err) {
             res.redirect("back");
@@ -61,7 +61,7 @@ router.get("/:report_id", async function(req, res){
     }) 
 });
 
-router.get("/:report_id/edit", async function(req, res){
+router.get("/:report_id/edit", middleware.isLoggedIn, async function(req, res){
     await Report.findById(req.params.report_id, function(err, foundReport){
         if(err) {
             res.redirect("back");
@@ -71,7 +71,7 @@ router.get("/:report_id/edit", async function(req, res){
     }) 
 });
 
-router.put("/:report_id", async function(req,res){
+router.put("/:report_id", middleware.isLoggedIn, async function(req,res){
     const id = req.params.report_id;
     await Course.findById(req.params.id, async function(err, course){
         if(err) {
@@ -109,7 +109,7 @@ router.put("/:report_id", async function(req,res){
     }) 
 });
 
-router.get("/:report_id/data", async function(req, res){
+router.get("/:report_id/data", middleware.isLoggedIn, async function(req, res){
     await Report.findById(req.params.report_id).populate("players.Object").exec(function(err, foundReport){
         if(err) {
             console.log(err);
@@ -119,7 +119,7 @@ router.get("/:report_id/data", async function(req, res){
     });
 });
 
-router.delete("/:report_id", function(req, res){
+router.delete("/:report_id", middleware.isLoggedIn, function(req, res){
     Report.findByIdAndRemove( req.params.report_id, function(err){
         if(err) {
             res.redirect("back");

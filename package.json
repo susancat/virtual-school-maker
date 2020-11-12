@@ -1,7 +1,7 @@
 {
-  "name": "quiztrivia",
+  "name": "vsm",
   "version": "1.0.0",
-  "description": "",
+  "description": "web admin tool for educators",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

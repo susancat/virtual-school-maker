@@ -4,7 +4,7 @@ const Course = require("../models/course");
 const Share = require("../models/share");
 const middleware = require("../middleware");
 
-router.get("/", async (req, res) => {
+router.get("/", middleware.isLoggedIn, async (req, res) => {
     await Course.findById(req.params.id).populate("assignments"). exec(function(err, foundCourse){
         if(err){
             console.log(err);
@@ -24,7 +24,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
     })    
 })
 
-router.post("/", async function(req, res){ 
+router.post("/", middleware.isLoggedIn, async function(req, res){ 
     const { title,text } = req.body;
     const author = {
         id: req.user._id,
@@ -55,7 +55,7 @@ router.post("/", async function(req, res){
     });
 });
 
-router.get("/:assignment_id/edit", function(req,res){
+router.get("/:assignment_id/edit", middleware.isLoggedIn, function(req,res){
     Share.findById(req.params.assignment_id, function(err, foundAssignment){
         if(err) {
             res.redirect("back");

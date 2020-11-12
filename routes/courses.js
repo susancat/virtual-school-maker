@@ -41,7 +41,9 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     // create a new class and save to DB
     Course.create(newCourse, function(err, newly){
             if (err) {
-                console.log(err);
+                // req.flash("error", err.message);
+                req.flash("error","Class ID is already used!")
+                res.redirect("/courses/new");
             }else {
                 const id = newly._id
                 req.flash("success", "Class added successfully!")

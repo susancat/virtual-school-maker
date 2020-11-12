@@ -3,7 +3,6 @@ const LocalStrategy = require("passport-local");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
-
 const User = require("../models/user");
 
 passport.serializeUser((user,done) => {
@@ -18,6 +17,7 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.use(new GoogleStrategy({
     clientID: "344041127224-g7nnpdvslcfd2orvlovgamnp2mmtcdt3.apps.googleusercontent.com",
     clientSecret: "4fE3bw1QoMfiRt3E_TUJeX3e",

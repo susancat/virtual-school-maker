@@ -6,6 +6,7 @@ const QuestionBank = require("../models/questionbank");
 const middleware = require("../middleware");
 
 router.get("/:question_id", middleware.isLoggedIn, async function(req, res){
+    //lean() convert mongo doc to js object
     await QuestionBank.findById(req.params.question_id).lean().exec(function(err,foundQuestion){
         if (err) {
             console.log(err)

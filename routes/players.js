@@ -4,7 +4,7 @@ const Course = require("../models/course");
 const Player = require("../models/player");
 const middleware = require("../middleware");
 
-router.get("/", (req, res) => {
+router.get("/", middleware.isLoggedIn,(req, res) => {
     Player.find({}, function(err,allPlayer){
       if(err){
         console.log(err)
@@ -165,7 +165,7 @@ router.put("/:player_id", async function(req, res){
 });
 
 //DELETE student ROUTE
-router.delete("/:player_id", function(req, res){
+router.delete("/:player_id", middleware.isLoggedIn,function(req, res){
   Player.findOneAndRemove({ userID: `${req.params.player_id}`}, function(err){
       if(err) {
           res.redirect("back");

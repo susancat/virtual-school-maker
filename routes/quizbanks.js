@@ -9,7 +9,7 @@ router.get("/quizbank", async function(req, res){
         if (req.query.search) {
             var noMatch = null;
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            await Quiz.find({title: regex}, function(err,allQuizzes){
+            await Quiz.find({title: regex, 'public': "true"}, function(err,allQuizzes){
                 if(err){
                     console.log(err);
                 }else {
@@ -20,7 +20,7 @@ router.get("/quizbank", async function(req, res){
                 }
             });
         } else { 
-            await Quiz.find({}, function(err,allQuizzes){
+            await Quiz.find({'public': "true"}, function(err,allQuizzes){
                 if(err){
                     console.log(err);
                 }else {

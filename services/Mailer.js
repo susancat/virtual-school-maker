@@ -1,7 +1,7 @@
 const sendGrid = require("sendgrid");
 const helper = sendGrid.mail;
 
-const key = "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";
+const key = "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";
 
 class Mailer extends helper.Mail {
     //classID &recipients come from email, content from template

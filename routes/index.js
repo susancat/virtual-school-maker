@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const passport = require("passport");
 const User = require("../models/user");
 const QuestionBank = require("../models/questionbank");
@@ -33,26 +33,37 @@ router.get("/register", function(req, res){
 
 //get sign up
 router.post("/register", function(req, res){
-   var newUser = new User({username: req.body.username});
-   User.register(newUser, req.body.password, function(err, user){
-       if(err){
-           req.flash("error", err.message);
-           return res.render("register");
-       }passport.authenticate("local")(req, res, function(){
-        req.flash("success","Welcome to Quiz Trivia! " + user.username);   
-        res.redirect("/");
-       });
-   });
+    const { username, email } = req.body
+    const newUser = new User({username: username, email: email.trim()});
+    User.findOne({ email }, function(err, foundUser) {
+        if(foundUser){
+            req.flash("error"," The email you have entered is already associated with another account.");
+            res.redirect("/register");
+        } else {
+            User.register(newUser, req.body.password, function(err, user){
+                if(err){
+                    // req.flash("error", err.message);
+                    req.flash("error","User name is already used!")
+                    return res.render("register");
+                }passport.authenticate("local")(req, res, function(){
+                    req.flash("success","Welcome to Virtual School Maker! " + user.username);   
+                    res.redirect("/");
+                });
+            });
+        }
+    })   
 });
 //login
 router.get("/login", function(req, res){
     res.render("login");
 });
+
 // the below equals to app.post("/login", middleware, callback),middleware will call localstrategy
 router.post("/login", passport.authenticate("local", 
     {
         successRedirect: "/",
-        failureRedirect: "/login"
+        failureRedirect: "/login",
+        failureFlash: true
     }), function(req, res){
 //it did nothing, just let us aware the middleware
 });
@@ -122,4 +133,5 @@ router.get("/players/:id",async function(req,res){
         }
     })
 })
+
 module.exports = router;

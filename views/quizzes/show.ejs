@@ -1,8 +1,8 @@
 <%- include("../partials/header") %>
-<div class="row mr-3" >
+<div class="row">
     <div class="col-md-4">
-        <img class="card-img ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="">  
-        <div class="container mt-2 ml-2" style="padding-right : 0;">
+        <img class="card-img ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="quiz">  
+        <div class="container mt-2 ml-2">
             <h4>Quiz Name: <a><%= quiz.title%></a></h4>
             <h6>Category: <%= quiz.category%></h6>
             <h6 class="pull-right">Difficulty level: <%= quiz.level %></h6>
@@ -25,17 +25,16 @@
         </div>
     </div>
 
-    <div class="col-md-8 mt-4" id="heading-jumbotron"> 
+    <div class="col-md-8"> 
         <div class="well">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-left">
-                        <h4 class="">Questions</h4>
-                        <a id="startButton" class="card-link btn btn-outline-success btn__tour" href="javascript:void(0);">New User Tour</a>
+                        <h4 class="">&nbsp;&nbsp;Questions&nbsp;&nbsp;<a id="startButton" class="card-link btn btn-outline-success btn__tour" href="javascript:void(0);">New User Tour</a></h4>
                     </div>
                     <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
                     <div class="ml-auto">
-                        <a data-step="1" data-intro="Create some questions to current quiz." data-disable-interaction="true" class="btn btn-success" data-toggle="modal" href="/quizzes/<%= quiz._id %>/questions/new" data-target="#newQuestion"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Add Question</a>
+                        <a data-step="1" data-intro="Create some questions to current quiz." data-disable-interaction="true" class="btn btn-success" data-toggle="modal" href="/quizzes/<%= quiz._id %>/questions/new" data-target="#newQuestion" style="transform: translateY(1px);"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Add Question</a>
                         <a data-step="2" data-intro="Import existing questions to your quiz." data-disable-interaction="true" class="btn btn-success" href="/quizzes/<%= quiz._id %>/questionbank" target="_blank"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Question Bank</a>
                     </div>
                     <% } %>
@@ -58,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center">
-                          <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 15rem" alt="">      
+                          <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 15rem" alt="question">      
                         </div>
                     </div>
                 </div>

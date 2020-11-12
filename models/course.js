@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const courseSchema = new Schema ({
     name: String,
-    classID: String,
+    classID: { type: String, unique: true },
     subject: String,
     description: String,
     quizid:String,
@@ -33,6 +33,9 @@ const courseSchema = new Schema ({
         ref: "Email"
     }], 
     selectedServer: String,
+    gamelink1: { type: String, default: "https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices"},
+    gamelink2: { type: String, default: "https://www.roblox.com/games/5887877906/Lobby-test-1" },
+    gamelink3: String,
     serverlink1: String,
     serverlink2: String,
     serverlink3: String

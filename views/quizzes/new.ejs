@@ -1,10 +1,10 @@
 <%- include("../partials/header") %>
 <div class="container">
     <div class="row">
-        <h1 class="text-center" id="create_div" style="width:40%; margin: auto;">Create a new quiz</h1>
+        <h1 class="text-center" style="width:40%; margin: auto;">Create a new quiz</h1>
     </div>
     <div class="row">
-        <div style="width:40%; margin: 25px auto;" data-step="1" data-intro="Create your own quiz here and submit!" id="create_div" data-position="left">
+        <div style="width:40%; margin: 25px auto;" data-step="1" data-intro="Create your own quiz here and submit!" data-position="left">
             <form action="/quizzes" method="POST" enctype="multipart/form-data">   
                 <div class="form-group">
                     <input class="form-control" type="text" name="title" placeholder="Title (required)" required>
@@ -38,7 +38,7 @@
                     <input style="width: 1.5rem;" id="op1" class="form-control ml-auto" type="checkbox" name="public" checked value="true">
                 </div>
                 <div class="form-group mt-2">
-                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    <button class="btn btn-lg btn-primary btn-block">submit</button>
                 </div>
             </form>
         </div>

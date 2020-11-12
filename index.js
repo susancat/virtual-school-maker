@@ -3,19 +3,7 @@ const express = require("express"),
       mongoose = require("mongoose"),
       flash = require ("connect-flash"),
       passport = require("passport"),
-      // LocalStrategy = require("passport-local"),
-      // GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
       methodOverride = require("method-override")
-
-// const Quiz = require("./models/quiz"),
-//       Question = require("./models/question"),
-//       User = require("./models/user"),
-//       Course = require("./models/course"),
-//       Player = require('./models/player'),
-//       Email = require("./models/email"),
-//       Recipient = require("./models/recipient"),
-//       QuizBank = require("./models/quizbank"),
-//       QuestionBank = require("./models/questionbank")
 
 require('./services/passport');
 
@@ -30,6 +18,7 @@ const questionRoutes = require("./routes/questions"),
       questionBankRoutes = require("./routes/questionbanks"),
       reportRoutes = require("./routes/reports"),
       shareRoutes = require("./routes/assignments")
+
 //extract data from request body and turn to JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +35,8 @@ const LOCALDB="mongodb://localhost:27017/Quiz"
 mongoose.connect(DATABASEURL || LOCALDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    autoIndex: true
 });
 
 //passport configuration
@@ -58,9 +48,6 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 //put "currentUser: req.user" in res.locals make it's in all templates
 app.use(function(req, res, next){
