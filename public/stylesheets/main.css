@@ -1,5 +1,6 @@
 body {
     padding-top: 70px;
+    overflow-x: hidden;
 }
 
 .cardIndex {
@@ -23,11 +24,6 @@ body {
     color: #fff;
 }
 
-.jumbotron {
-    background-image: url(../header.jpeg);
-    background-size: cover;
-    color: #fff;
-}
 
 .quickstart {
     background-image: linear-gradient(to left, rgb(19, 167, 19), rgb(6, 141, 6));
@@ -102,4 +98,44 @@ rect.bar-rect { fill: green; }
 .introjs-hint-pulse {
     background-color: rgba(249, 219, 4, .5) !important;
     border: 5px solid rgba(243, 247, 5, .90) !important;
+}
+
+@media(max-width:800px){
+    #signinbox {
+        width: 80% !important;
+    }
+
+    #heading-jumbotron{
+        margin-top: 2% !important;
+    }
+
+    #info-card {
+        width: 90% !important;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    #info-card img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #info-image {
+        margin-left: 10% !important;
+    }
+
+    #navbar_stuff {
+        margin-left: 0 !important;
+        text-align: left !important;
+    }
+
+    #navbar_thing {
+        padding-left: 0 !important;
+    }
+
+    #create_div{
+        width: 80% !important;
+    }
+
 }
