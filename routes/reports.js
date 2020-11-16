@@ -85,7 +85,7 @@ router.put("/:report_id", middleware.isLoggedIn, async function(req,res){
                     const players2 = report.players.filter(x => x._id)
                     const difference = players1.filter(x => !players2.includes(x));
                     await Promise.all(difference.map(async (player) => {
-                        await Player.findById(player, async function(err, foundPlayer){
+                        await Player.findById(player._id, async function(err, foundPlayer){
                             if(err){
                                 console.log(err)
                             } else {
@@ -100,7 +100,7 @@ router.put("/:report_id", middleware.isLoggedIn, async function(req,res){
                             }                            
                         })
                     }))
-                    report.quizname = req.body.report.quizname;
+                    // report.quizname = req.body.report.quizname;
                     await report.save();
                     res.render("reports/show", {course:course, course_id: req.params.id, report: report });
                 }

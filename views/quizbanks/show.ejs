@@ -1,4 +1,6 @@
 <%- include("../partials/header") %>
+<%- include("../partials/vsmHeader") %>
+
 <div class="row mt-5" id="heading-jumbotron">
     <div class="col-md-4">
         <img class="card-img ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>"  alt="">  
@@ -22,7 +24,7 @@
                     <hr>
                 </div>
                 <% quiz.questions.forEach(function(question){ %>
-                <div class="card col-md-12 bg-light border-light mb-3">
+                <div class="card col-md-12 bg-light border-success mb-3">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card-body">

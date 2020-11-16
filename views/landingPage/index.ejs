@@ -1,0 +1,199 @@
+<%- include("../partials/header") %>
+<%- include("../partials/landingPageHeader") %>
+<div class="main">
+    <!-- First Section -->
+    <div class="jumbotron jumbotron-fluid" id="first_jumbotron" style="background-image: url(<%= homepage.main_background %>); ">
+      <h1 class="text-center font-weight-bold text-white mb-2" style="padding-top: 10%; font-size: 3vw;"><%= homepage.main_title %></h1>
+      <h3 class="text-center font-italic text-white mt-3" style="font-size: 2vw;"><%= homepage.subhead_1 %></h3>
+      <h3 class="text-center text-white font-weight-bold mt-3" style="font-size: 2vw;"><%= homepage.subhead_2 %></h3>
+      <div class="d-inline-flex border border-light rounded mt-5" id="wrapper" style="border-width: .5vw !important;">
+        <a href="#anchor" class="text-decoration-none" style="text-decoration: none;" id="scroll_button">
+          <h3 class="text-white font-weight-bold ml-1 mr-1" style="font-size: 2vw;"><%= homepage.button_text %></h3> 
+        </a>
+      </div>
+      <div class="mt-5" id="down_arrow">
+        <a href="#anchor" style="text-decoration: none; color: white; font-size: 1vw;"><i class="fas fa-arrow-down fa-3x"></i></a>
+      </div>
+    </div>
+    <span class="anchor" id="anchor" style="position: relative; top: -100px;"></span>
+    
+    <!-- Second Section -->
+    <div class="container-fluid" style="padding: 0; margin: 0;">
+      <div class="jumbotron" style="background-color: white; text-align: center;" >
+        <h1 class="text-center font-weight-bold" style="font-size: 4vw;"><%= homepage.section_2_head %></h1>
+        <h2 class="text-center font-italic" style="font-size: 2vw;"><%= homepage.section_2_subhead %></h2>
+        <img class= "mt-3" id="info_png"  src="<%= homepage.promo_image %>">
+      </div>
+    </div>
+
+    <!-- Third Section -->
+    <!-- Check with Irene for the contents because may not be accurate -->
+    <!-- <div class="container-fluid p-0">
+      <div class="jumbotron jumbotron-fluid" style="padding: 0; margin: 0; background-color: white;">
+        <div class="row">
+          <div class="col-sm text-center" style="background-image: url(https://images.pexels.com/photos/212286/pexels-photo-212286.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center; background-size: 100% 100%;">
+            <h1 class="font-weight-bold mt-5 text-white" style=" font-size: 3vw;">CREATE</h1>
+            <p class="font-italic text-white mb-5 mt-5">Create a real-time 3D<br>learning game in 1 minute!</p>
+            <div class="d-inline-flex border border-light rounded mt-3 mb-5">
+              <a href="/create" style="text-decoration: none; color: black;">
+                <h4 class="ml-3 mr-3 text-light font-weight-bold">Try it free!</h3>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm text-center" style="background-image: url(https://www.pandasecurity.com/en/mediacenter/src/uploads/2017/11/pandasecurity-MC-roblox-game.jpg); background-size: 100% 100%; background-position: left;">
+            <h1 class="font-weight-bold mt-5 text-white" style="padding-top: 10%;">PLAY</h1>
+            <p class="font-italic text-white mb-5 mt-5">Enter your pin to join the game!<br>It's free!</p>
+            <div class="d-inline-flex border border-white rounded mt-3 mb-5">
+              <a href="/play" style="text-decoration: none; color: black;">
+                <h4 class="ml-3 mr-3 text-white font-weight-bold">Let's go!</h3>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm text-center" style="background-image: url(https://institute.truman.edu/files/2014/09/Grades1.jpg); background-size: 100%; background-position: center;"> 
+            <h1 class="font-weight-bold text-light mt-5" style="padding-top: 10%;">ASSESS</h1>
+            <p class="font-italic text-light mb-5 mt-5">See how and what we measure, <br> track your progress</p>
+            <div class="d-inline-flex border border-white rounded mt-3 mb-5">
+              <a href="" style="text-decoration: none; color: black;">
+                <h4 class="ml-3 mr-3 text-white font-weight-bold">Let's go!</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Images Section -->
+    <!-- Acquire screenshot and images from Roblox at a later date -->
+    <div class="container-fluid" style="background-color: white;">
+      <div class="jumbotron" style="background: none;">
+        <h1 class="text-center font-weight-bold text-black text-capitalize" style="font-size: 3vw;"><%= homepage.section_3_head %></h1>
+          <div class="row" id="info_row">
+            <div class="mt-3 col-sm ml-3 pl-0 pr-0 text-center border border-muted" id="info_box">
+              <img class="pl-0 pr-0 ml-0 mr-0" src="<%= homepage.section_3_img1 %>" id="info_image" alt="">
+              <h1 class="text-center font-weight-bold text-black mt-3" style="font-size: 2vw;"><%= homepage.section_3_text1 %></h1>
+              <p class="text-center pt-3 font-italic text-dark" style="font-size: 1.5vw;">Choose the correct option... <br>or suffer the consequences</p>
+              <a href="/games" style="text-decoration: none;">
+                <div class="d-inline-flex border border-dark rounded mb-4">
+                  <h3 class="text-dark font-weight-bold pl-2 pr-2" style="font-size: 1.5vw;"><%= homepage.section_3_buttontext %></h3>
+                </div>
+              </a>
+            </div>
+            <div class="mt-3 col-sm ml-3 text-center pl-0 pr-0 border border-muted" id="info_box">
+              <img src="<%= homepage.section_3_img2 %>" id="info_image" alt="">
+              <h1 class="text-center font-weight-bold text-black mt-3" style="font-size: 2vw;"><%= homepage.section_3_text2 %></h1>
+              <p class="text-center pt-3 font-italic text-dark" style="font-size: 1.5vw;">Play various fun and engaging <br> minigames!</p>
+              <a href="/games" style="text-decoration: none;">
+                <div class="d-inline-flex border border-dark rounded mb-4">
+                  <h3 class="text-dark font-weight-bold pl-2 pr-2" style="font-size: 1.5vw;"><%= homepage.section_3_buttontext %></h3>
+                </div>
+              </a>
+            </div>
+            <div class= "mt-3 col-sm ml-3 text-center pl-0 pr-0 border border-muted" id="info_box">
+              <img src="https://i.imgur.com/tyXRHei.png" id="info_image" alt="">
+              <h1 class="text-center font-weight-bold text-black mt-3" style="font-size: 2vw;"><%= homepage.section_3_text3 %></h1>
+              <p class="text-center pt-3 font-italic text-dark" style="font-size: 1.5vw;">Battle other teams using <br> physics and your creativity!</p>
+              <a href="/games" style="text-decoration: none;">
+                <div class="d-inline-flex border border-dark rounded mb-4">
+                  <h3 class="text-dark font-weight-bold pl-2 pr-2" style="font-size: 1.5vw;"><%= homepage.section_3_buttontext %></h3>
+                </div>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Information Carousel -->
+    <div class="container-flex">
+      <div class="jumbotron" style="background-color: #565962; margin-bottom: 0;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="container mb-5">
+                <h1 class="text-center text-white font-italic font-weight-bold" style="font-size: 3vw;"><%= homepage.section_4_head1 %></h1>
+                <img src="<%= homepage.carousel_image1 %>" class="w-100 mt-5" id="shown_img" alt="">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container mb-5">
+                <h1 class="text-center text-white font-italic font-weight-bold" style="font-size: 3vw;"><%= homepage.section_4_head2 %></h1>
+                <img src="<%= homepage.carousel_image2 %>" class="w-100 mt-5" id="shown_img" alt="">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container mb-5">
+                <h1 class="text-center text-white font-italic font-weight-bold" style="font-size: 3vw;"><%= homepage.section_4_head3 %></h1>
+                <img src="<%= homepage.carousel_image3 %>" class="w-100 mt-5" id="shown_img" alt="">
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us? Section -->
+    <div class="container-flex">
+      <div class="jumbotron mb-0 pb-0">
+        <div class="border-bottom border-dark w-100">
+          <h1 class="text-center font-weight-bold " id="info_title"><%= homepage.section_5_head %></h1>
+        </div>  
+        <div class="row mb-0">
+          <div class="mt-5 col-sm border-bottom border-dark">
+            <h1 class="text-center font-weight-bold" id="info_title"><%= homepage.section_5_subhead1 %></h1>
+            <h3 class="text-center mt-4" id="info_h3"><i class="fas fa-search"></i><%= homepage.section_5_subhead1_text1 %></h3>
+            <h3 class="text-center mt-4 mb-5" id="info_h3"><i class="fas fa-gamepad"></i><%= homepage.section_5_subhead1_text2 %></h3>
+          </div>
+          <div class="mt-5 col-sm border-bottom border-dark">
+            <h1 class="text-center font-weight-bold" id="info_title"><%= homepage.section_5_subhead2 %></h1>
+            <h3 class="text-center mt-4" id="info_h3">
+              <i class="fas fa-brain"></i> Motivation Theory 
+              <p>Competition <br>Collaboration <br>Sandbox</p>
+            </h3>
+            <h3 class="text-center mt-4" id="info_h3">
+              <i class="fas fa-school"></i> Collaborative Learning
+            </h3>
+            <h3 class="text-center mb-5 mt-4" id="info_h3">
+              <i class="fas fa-users"></i> Realtime-multiplayer
+            </h3>
+          </div>
+          <div class="mt-5 col-sm border-bottom border-dark">
+            <h1 class="text-center font-weight-bold" id="info_title"><%= homepage.section_5_subhead3 %></h1>
+            <h3 class="text-center mt-4" id="info_h3">
+              <i class="far fa-smile-beam"></i><%= homepage.section_5_subhead3_text1 %>
+            </h3>
+            <h3 class="text-center mt-4" id="info_h3">
+              <i class="fas fa-chart-line"></i><%= homepage.section_5_subhead3_text2 %>
+            </h3>
+            <h3 class="text-center mb-5 mt-4" id="info_h3">
+              <i class="fas fa-hand-holding-medical"></i><%= homepage.section_5_subhead3_text3 %>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Up -->
+    <div class="jumbotron jumbotron-fluid w-100 mb-0" style="text-align: center; background-image: url(https://images.pexels.com/photos/4145074/pexels-photo-4145074.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center; background-size: 100% 100%;">
+      <h1 class="text-center font-weight-bold text-light" style="font-size: 3vw; margin-top: 15%;"><%= homepage.section_6_head %></h1>
+      <h1 class="text-center font-weight-bold text-light" style="font-size: 3vw; margin-top: 5%;"><%= homepage.section_6_subhead %></h1>
+      <a href="/register" style="text-decoration: none;">
+        <div class="d-inline-flex border border-light rounded" id="end_button" style="border-width: .5vw !important; margin-top: 10%; margin-bottom: 15%;">
+          <h3 class="font-weight-bold pl-2 pr-2" style="font-size: 3vw;"><%= homepage.section_6_buttontext %></h3>
+        </div>
+      </a>
+      <!-- <button class="cool_button">HI</button> -->
+
+    <!-- Footer -->
+    <%- include("../partials/footer") %>

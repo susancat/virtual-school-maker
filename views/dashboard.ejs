@@ -1,4 +1,6 @@
 <%- include("./partials/header") %>
+<%- include("./partials/vsmHeader") %>
+<!-- https://images.pexels.com/photos/356043/pexels-photo-356043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 -->
 <div class="container">
     <header class="jumbotron mt-5" id="heading-jumbotron" data-aos="fade" data-aos-duration="500" style="background-image: url(https://images.pexels.com/photos/356043/pexels-photo-356043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center;">
         <div class="container pt-5">
@@ -22,13 +24,21 @@
             <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <h4 class="card-header">My Classes</h4>
                     <div class="card-body">
+                        <% let count = 0 %>
                         <% courses.forEach(function(course) { %>
-                            <% if(currentUser && course.author.id.equals(currentUser._id)) { %>
-                        <div class="card-title mb-2 text-muted">
-                            <a href="/courses/<%= course._id %>"class="card-link"><%= course.classID %></a>
-                        </div>  
-                        <% } %> 
+                            <% if(currentUser && course.author.id.equals(currentUser._id) && count <= 4) { %>
+                                <% count++ %>
+                                <div class="card-title mb-2 text-muted">
+                                    <a href="/courses/<%= course._id %>"class="card-link"><%= course.classID %></a>
+                                </div>  
+                            <% } %> 
                         <%}) %>
+                        <% if(count==0) {%>
+                            <div class="card-title mb-2 text-muted">
+                                <h3>You have no classes</h3>
+                                <a href="/courses/new"class="card-link">Create One Now!</a>
+                            </div>
+                        <% } %> 
                     </div>                         
                 <div class="card-footer text-muted text-right">
                     <a href="/courses" class="card-link">See All</a>
@@ -40,10 +50,10 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-2">
-                        <a href="#" class="card-link">Quiz Trivia</a>
+                        <a href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" class="card-link">Quiz Trivia</a>
                     </div>
                     <div class="mb-2">
-                        <a href="#" class="card-link">Lethal Choice</a>
+                        <a href="https://www.roblox.com/games/5887877906/Lobby-test-1" class="card-link">Lobby</a>
                     </div>
                 </div>
             </div>
@@ -77,9 +87,9 @@
                     <h4 class="card-title">My Quizzes</h4>
                 </div>
                 <div class="card-body">
-                    <% var counter = 0 %>
+                    <% let counter = 0 %>                  
                     <% quizzes.forEach(function(quiz) { %>
-                        <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                        <% if(currentUser && quiz.author.id.equals(currentUser._id)&& counter <= 4) { %>
                             <% counter++ %>
                             <div class="card-title mb-2 text-muted">
                                 <a href="/quizzes/<%= quiz._id %>"class="card-link"><%= quiz.title %></a>
@@ -103,7 +113,13 @@
                     <button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>
                 </div>
                 <div class="card-body">
-                    coming soon...
+                    <% quizzes.forEach(function(quiz){ %>
+                        <% if(quiz.public === true) { %>
+                            <div class="card-title mb-2 text-muted">
+                                <a href="/quizzes/<%= quiz._id %>"class="card-link"><%= quiz.title %></a>
+                            </div>
+                        <% } %>
+                    <% }) %>
                 </div>
                 <div class="card-footer text-right">
                     <a href="/quizbank" class="card-link">See More</a>
@@ -124,4 +140,14 @@ document.getElementById('startButton').onclick = function() {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+$('[data-toggle="popover"]').popover({
+  trigger: 'focus'
+})
+$('.card').hover(function () {
+    $(this).children(".card-header").addClass('text-white bg-success');
+    $(this).addClass('border-success');
+}, function () {
+    $(this).children(".card-header").removeClass('text-white border-success bg-success');
+    $(this).removeClass('border-success');
+});
 </script>

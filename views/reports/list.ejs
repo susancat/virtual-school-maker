@@ -1,8 +1,14 @@
 <%- include("../partials/header") %>
+<%- include("../partials/vsmHeader") %>
 
-<div class="container">           
-    <div class="row">
-        <table class="table table-hover">
+<div class="container"> 
+    <header class="jumbotron mt-5" id="heading-jumbotron" style="background-image: url(report.jpg); background-size: 100%; background-position: center;">
+        <div class="container" data-aos="fade" data-aos-duration="1000">
+            <h1 class="font-weight-bold text-light pb-2">Reports</h1>       
+        </div>
+    </header>         
+    <div class="row">      
+        <table class="table table-hover ml-2 mr-2">
             <thead>
                 <tr class="table-active">
                     <th scope="col">Name</th>
@@ -12,18 +18,28 @@
                 </tr>
             </thead>
             <tbody>
-                <% reports.forEach(function(report){ %>     
-                    <% if(currentUser && report.author.id.equals(currentUser._id)) { %>       
-                    <tr>
-                        <th scope="row"><%= report.quizname %></th>
-                        <td><%= report.dateCreated.toLocaleString() %></td>
-                        <td><%= report.players.length %></td>
-                        <td><a class="" href="/reports/<%= report._id %>">view</a></td>
-                    </tr>
-                    <% } %> 
-                <%}) %>   
+                <% let count = 0 %>
+                <% reports.forEach(function(report){ %>
+                    <% if(currentUser && report.author.id.equals(currentUser._id)) { %>
+                        <% count ++ %>  
+                        <tr>
+                            <th scope="row"><%= report.quizname %></th>
+                            <td><%= report.dateCreated.toLocaleString() %></td>
+                            <td><%= report.players.length %></td>
+                            <td><a class="" href="/reports/<%= report._id %>">view</a></td>
+                        </tr>
+                    <% } %>
+                <%}) %>
             </tbody>
-            </table>          
+        </table>  
+        <% if(count == 0) { %>
+            <div class="container">
+                <h1 class="font-weight-bold text-center">Looks like you haven't made a report yet</h1>
+                <div class="ml-auto mt-5 text-center">
+                    <a class="btn btn-success" href="/courses"><i class="fa fa-plus" aria-hidden="true"></i> Play with quizzess to create reports!</a>
+                </div>
+            </div>
+        <%}%>        
     </div>     
 </div>
 <%- include("../partials/footer") %>

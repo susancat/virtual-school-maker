@@ -1,4 +1,5 @@
 <%- include("../partials/header") %>
+<%- include("../partials/vsmHeader") %>
 
 <div class="container">
     <header class="jumbotron mt-5" id="heading-jumbotron" style="background-image: url(https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: 100%; background-position: 100%;">
@@ -26,7 +27,7 @@
         </div>
         <% quizzes.forEach(function(quiz){ %>
             <% if(quiz.public === true) { %>
-                <div class="card cardIndex col-md-6 bg-light mb-3" id="info-card" style="width: 45%; border: 0.5rem solid #fff" data-aos="fade" data-aos-duration="1500">
+                <div class="card cardIndex col-md-6 bg-light mb-3" id="info-card" data-aos="fade" data-aos-duration="1500">
                     <div class="row">
                         <div class="col-md-4 d-flex align-items-center">
                             <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 20rem" alt="quiz image"> 
@@ -43,9 +44,9 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <% if(quiz.public === false) { %>
-                            <span>Visible to only you</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> Visible to only you</span>
                         <% } else { %>
-                            <span>Visible to the public</span>
+                            <span><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
                         <% } %>
                         <small class="text-muted"><%= quiz.lastUpdated %></small>
                         <a href="/quizbank/<%= quiz._id %>" class="btn btn-primary stretched-link">View the Quiz</a>
@@ -56,3 +57,12 @@
     </div>  
 </div>
 <%- include("../partials/footer") %>
+<script>
+$('.card').hover(function () {
+    $(this).removeClass('bg-light');
+    $(this).addClass('text-white bg-success');
+}, function () {
+    $(this).removeClass('text-white bg-success');
+    $(this).addClass('bg-light');
+});
+</script>

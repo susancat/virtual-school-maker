@@ -1,17 +1,18 @@
 <%- include("../partials/header") %>
+<%- include("../partials/vsmHeader") %>
 <div class="row mt-5" id="heading-jumbotron">
     <div class="col-md-9">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card mb-3 border-success">
                         <div class="card-header">
                             <p class="lead"><i class="fa fa-tasks" aria-hidden="true">&nbsp;&nbsp;</i>Assign a Quiz</p>  
                         </div>
                         <div class="card-body">
-                            <% var counter = 0 %>
+                            <% let counter = 0 %>
                             <% quizzes.forEach(function(quiz) { %>
-                                <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                                <% if(currentUser && quiz.author.id.equals(currentUser._id) && counter <= 4) { %>
                                     <% counter++ %>
                                 <div class="card-title row">
                                     <div class="container w-100">
@@ -45,11 +46,24 @@
                                     </div>
                                 </div>
                             <%}%>
+                            <% if(noMatch !== null) { %>
+                                <h5><%= noMatch %></h5>
+                            <% } %>
+                        </div>
+                        <div class="card-footer">
+                            <form action="/courses/<%= course_id %>" method="GET" class="form-inline">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" placeholder="Search quizzes">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card">
+                    <div class="card border-success">
                         <div class="card-body">
                             <h4 class='card-title d-flex justify-content-between mb-0'><span>Class Name: <%= course.name %>&nbsp;&nbsp;<button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="right" title="Enroll students in a class" data-content="Students are enrolled automatically when they login the Roblox game, you can use any message tool besides our group email, just make sure to share all the following info: class ID, quiz PIN and Game Link/Private Server Link.">&nbsp;<i class="fas fa-info"></i>&nbsp;</button></span></h4>
                             <a id="startButton" class="card-link btn btn-success btn__tour mb-1" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a>
@@ -83,11 +97,12 @@
                         <div class="row table-responsive-sm">
                             <table class="table text-center">
                                 <thead>
-                                    <tr>
+                                    <tr class="table-success">
                                         <th scope="col">Rank</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Points</th>
                                         <th scope="col">Cash</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,11 +112,11 @@
                                             <th scope="row"><%= i %></th>
                                             <td><a href="/courses/<%= course_id %>/player-data/<%=player.userID %>/view"class="card-link col-md-6" style="transform: translateY(5px)"><%= player.name %></a></td>
                                             <td><%= player.points %></td>
-                                            <td class="row col-md-12"> 
+                                            <td><%= player.cash %></td>
+                                            <td>
                                                 <form action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=PUT" method="POST" style="padding-right:0">
                                                     <div class="inline">
-                                                        <%= player.cash %> 
-                                                        <input type="text" class="ml-3" style="width:20%" name="player[cash]" value="<%= player.cash %>" >
+                                                        <input type="text" class="ml-3" style="max-width: 25%;min-width:10%" name="player[cash]" value="<%= player.cash %>" >
                                                         <button class="btn btn-sm btn-success ">Reward</button>
                                                     </div>
                                                 </form>
@@ -120,7 +135,7 @@
 <!-- right-side   -->
     <div class="col-md-3">         
         <div class="accordion" id="gameAccordion">
-            <div class="card mr-3 mb-2" data-step="1" data-intro="Choose a Roblox game." data-position="left">
+            <div class="card mr-3 mb-2 border-success" data-step="1" data-intro="Choose a Roblox game." data-position="left">
                 <div class="card-header">
                     <p class="lead"><i class="fa fa-gamepad" aria-hidden="true">&nbsp;&nbsp;</i>Choose a game</p>      
                 </div>
@@ -201,13 +216,13 @@
             </div>           
         </div>
         
-        <div class="card mr-3 mb-2">
+        <div class="card mr-3 mb-2 border-success">
             <p class="lead card-header" data-step="5" data-intro="Share the quiz to students via group email" data-disable-interaction="true"><i class="fa fa-address-book" aria-hidden="true"></i><a href="/courses/<%= course._id %>/emails/new" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;Send group emails</a></p>    
         </div>   
-        <div class="card mr-3 mb-2">
+        <div class="card mr-3 mb-2 border-success">
             <p class="lead card-header"><i class="fa fa-list" aria-hidden="true"></i><a href="/courses/<%= course._id %>/reports" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the reports</a></p>    
         </div>   
-        <div class="card mr-3">
+        <div class="card mr-3 border-success">
             <p class="lead card-header"><i class="far fa-copy"></i><a href="/courses/<%= course._id %>/assignments" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the assignments</a></p>    
         </div>           
     </div>
@@ -418,13 +433,14 @@ $('.dropdown-toggle').dropdown()
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
-
+$('[data-toggle="popover"]').popover({
+  trigger: 'focus'
+})
 </script>
 
 <script type="text/javascript">
     document.getElementById('startButton').onclick = function() {
       introJs().addHints()  
-      introJs().setOption("exitOnOverlayClick",false)
       .setOption('doneLabel', 'Next page')
       .start().
       oncomplete(function() { 

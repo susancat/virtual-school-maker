@@ -9,8 +9,36 @@ const Player = require("../models/player");
 const Report = require("../models/report");
 const Share = require("../models/share");
 const middleware = require("../middleware");
+const butter = require('buttercms')('c50ea105ed2cdc44abe084a42fe997bca3ae187e');
+//85b519dc8cff91e5df1cf632ba73d4b92a420506
+router.get('/', function(req, res, next) {
+    butter.page.retrieve('*','home_page').then(function(resp){
+      var page = resp.data.data;
+      res.render('landingPage/index', { title: 'Virtual School Maker' , page_name: 'home', homepage: page.fields});
+    }).catch(function(resp){
+      console.log('failed');
+    });
+})
 
-router.get("/", middleware.isLoggedIn, async function(req, res){
+router.get('/games', function(req, res){
+    butter.page.retrieve('*','games').then(function(resp){
+      var page = resp.data.data;
+      res.render('landingPage/games', {page_name:'games', page: page.fields});
+    }).catch(function(resp){
+      console.log('failed');
+    });
+});
+  
+router.get('/testamonials', function(req, res){
+    butter.page.retrieve('*', 'testimonials').then(function(resp){
+      var page = resp.data.data;
+      res.render('landingPage/testamonials', {page_name: 'testamonials', page: page.fields});
+    }).catch(function(resp){
+      console.log('failed');
+    });
+});
+
+router.get("/dashboard", middleware.isLoggedIn, async function(req, res){
     Course.find({}, function(err,allCourses){
         if (err) {
             console.log(err)
@@ -19,7 +47,7 @@ router.get("/", middleware.isLoggedIn, async function(req, res){
                 if(err){
                     console.log(err);
                 }else {
-                    res.render("landing", { courses: allCourses, quizzes: allQuizzes})
+                    res.render("dashboard", { courses: allCourses, quizzes: allQuizzes})
                 }
             }) 
         }       
@@ -47,7 +75,7 @@ router.post("/register", function(req, res){
                     return res.render("register");
                 }passport.authenticate("local")(req, res, function(){
                     req.flash("success","Welcome to Quiz Trivia! " + user.username);   
-                    res.redirect("/");
+                    res.redirect("/dashboard");
                 });
             });
         }
@@ -61,7 +89,7 @@ router.get("/login", function(req, res){
 // the below equals to app.post("/login", middleware, callback),middleware will call localstrategy
 router.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/",
+        successRedirect: "/dashboard",
         failureRedirect: "/login",
         failureFlash: true
     }), function(req, res){
@@ -72,7 +100,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout", function(req, res){
     req.logout();
     req.flash("success", "Logged you out")
-    res.redirect("/login");
+    res.redirect("/");
 });
 
 router.get("/questionbank/:category", async function(req,res){

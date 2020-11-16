@@ -1,0 +1,92 @@
+<%- include("../partials/header") %>
+<%- include("../partials/landingPageHeader") %>
+<div class="main">
+    <!-- Title Section -->
+    <div class="container-flex">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.first_background_image %>); background-position: center; background-attachment: fixed; ">
+            <h1 class="display-4 text-center font-weight-bold text-light mt-5" ><%= page.page_header %></h1>
+            <h3 class="display-5 text-center font-weight-bold text-light mt-5"><%= page.page_subheader %></h3>
+            <div class="row mt-5 mb-5 w-50" style="margin-left: 25%;">
+                <div class="col-sm mt-3 text-center">
+                    <a href="#teachers" id="teachers" style="text-decoration: none;">
+                        <div class="d-inline-flex border border-light rounded" style="border-width: 3px !important;">
+                            <h3 class="text-center pl-2 pr-2 text-light font-weight-bold" id="testa_text"><%= page.button_text_1 %></h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm mt-3 text-center">
+                    <a href="#testbtn" style="text-decoration: none;">
+                        <div class="d-inline-flex border border-light rounded" style="border-width: 3px !important;">
+                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text"><%= page.button_text_2 %></h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm mt-3 text-center">
+                    <a href="#homeschoolers" style="text-decoration: none;">
+                        <div class="d-inline-flex border border-light rounded" style="text-align: center !important; border-width: 3px !important;">
+                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text"><%= page.button_text_3 %></h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TESTING HEROKU -->
+    <!-- Teachers -->
+    <div class="container-flex">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.first_section_background %>); background-position: center; background-attachment: fixed;">
+            <div class="container" id="testa_container">
+                <h1 class="text-left text-light font-weight-bold  mt-5" id="test_text"><%= page.first_section_header %></h1>
+                <h3 class="display-5 text-left text-light font-weight-bold  mt-5" id="test_text2"><%= page.first_section_subheader %></h3>
+                <a href="#collapseContent" id="testbtn" role="button" aria-expanded="false" aria-controls="collapseContent" class="btn font-weight-bold btn-primary mt-5 text-light" data-toggle="collapse" style="background: none; border-width: 3px; border-color:white; outline: none; ">
+                    <%= page.expand_button %>
+                </a>
+                <div class="collapse" id="collapseContent" style="padding: 0;">
+                    <h1 class="text-light mt-5" style="margin-right: 10%;"><strong class="font-weight-bold"><%= page.name1 %></strong><%= page.first_section_text_head %></h1>
+                    <h3 class="text-light mt-5 mr-5" ><%= page.first_section_text %>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parents -->
+    <div class="container-flex">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.second_section_background %>); background-position: center; background-attachment: fixed;">
+            <div class="container" id="testa_container_right">
+                <h1 class="text-right text-light font-weight-bold mt-5"><%= page.second_section_header %></h1>
+                <h3 class="display-5 text-right text-light font-weight-bold mt-5" ><%= page.second_section_subheader %></h3>
+                <div class="text-right">
+                    <a href="#parentCollapse" role="button" aria-expanded="false" aria-controls="parentCollapse" class="btn font-weight-bold btn-primary mt-5 text-light" data-toggle="collapse" style="background: none; border-width: 3px; border-color: white; outline: none; ">
+                        <%= page.expand_button %>
+                    </a>
+                </div>
+
+                <div class="collapse" id="parentCollapse" style="direction: rtl;">
+                        <h1 class="text-light text-right mt-5"><strong class="font-weight-bold"><%= page.name2 %></strong><%= page.second_section_text_head %></h1>
+                        <h3 class="text-light text-right mt-5" style="margin-left: 10%;"><%= page.second_section_text %>
+                        </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Homeschoolers -->
+    <div class="container-flex" id="homeschoolers">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.third_section_background %>); background-position:center; background-attachment: fixed;">
+            <div class="container" id="testa_container">
+                <h1 class="text-left text-dark font-weight-bold  mt-5"><%= page.third_section_header %></h1>
+                <h3 class="display-5 text-left text-dark font-weight-bold  mt-5" style="width: 80%;"><%= page.third_section_subheader %></h3>
+                <a href="#homeCollapse" role="button" aria-expanded="false" aria-controls="homeCollapse" class="btn btn-primary mt-5 text-dark" data-toggle="collapse" style="background: none; border-width: 3px; border-color: #343a40 ; outline: none;">
+                    <%= page.expand_button %>
+                </a>
+
+                <div class="collapse" id="homeCollapse">
+                    <h1 class="text-dark mt-5" style="width: 80%;"><strong class="font-weight-bold"><%= page.name3 %></strong><%= page.third_section_text_head %></h1>
+                    <h3 class="text-dark mt-5" style="margin-right: 10%;"><%= page.third_section_text %>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+<%- include("../partials/footer") %>

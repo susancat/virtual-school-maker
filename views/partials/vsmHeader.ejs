@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-inverse fixed-top bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Virtual School Maker</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <% if (currentUser) {%>
+                    <li class="nav-item active" >
+                        <a class="nav-link" href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/quizbank"><i class="fa fa-cc-discover" aria-hidden="true"></i> Public Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> My Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses"><i class="fa fa-book" aria-hidden="true"></i> My Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports"><i class="fa fa-list" aria-hidden="true"></i> Reports</a>
+                    </li>
+                    <li class="nav-item" style="margin-top: 2px;">
+                        <form class="form-inline mr-auto">
+                            <a class="btn btn-outline-dark" href="/quizzes/new" role="button"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;&nbsp;Create</a>
+                        </form>
+                    </li>
+                <%}%>
+            </ul> 
+            <ul class="nav navbar-nav" id="navbar_thing" style="margin-left: auto; padding-left: 5%;">
+                <% if(!currentUser) { %>
+                    <li><a href="/login" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;&nbsp;Login&nbsp;&nbsp;</a></li>
+                    <li ><a href="/register" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</a></li>
+                <% } else { %>
+                    <li><a href="#" class="text-decoration-none" id="navbar_stuff" ><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Signed in as&nbsp;&nbsp;<%= currentUser.username %>&nbsp;&nbsp;</a></li>
+                    <li><a href="/logout" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a></li>
+                <% } %>
+            </ul>
+    </div>
+</div>
+</nav>
+  
+<div class="container">
+<% if(error && error.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= error %>
+    </div>
+<% } %>
+<% if(success && success.length > 0) { %>
+    <div class="alert alert-success" role="alert">
+        <%= success %>
+    </div>
+<% } %>
+</div>
+<main class="flex-fill" style="padding-top: 6rem;">

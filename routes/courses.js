@@ -13,7 +13,7 @@ router.get("/", middleware.isLoggedIn, function(req, res){
                 console.log(err);
             }else {
                 if(allCourse.length < 1){
-                    noMatch = 'No class match that query, please try again!';
+                    noMatch = 'No classes match that query, please try again!';
                 }
                 res.render("./courses/index", {courses: allCourse, noMatch: noMatch}); //if we want to pass any var, can add inside {}
             }
@@ -64,13 +64,28 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
         if(err) {
             console.log(err);
         }else{
-            Quiz.find({}, function(err,allQuizzes){
-                if(err){
-                    console.log(err);
-                }else {
-                    res.render("./courses/show", { course: foundCourse, quizzes: allQuizzes, course_id:req.params.id });
-                }
-            });
+            if (req.query.search) {
+                var noMatch = null;
+                const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+                Quiz.find({ title: regex }, function(err,allQuizzes){
+                    if(err){
+                        console.log(err);
+                    }else {
+                        if(allQuizzes.length < 1){
+                            noMatch = 'No quizzes match that query, please try again!';
+                        }
+                        res.render("./courses/show", { course: foundCourse, quizzes: allQuizzes, course_id:req.params.id, noMatch: noMatch });
+                    }
+                });
+            } else {
+                Quiz.find({}, function(err,allQuizzes){
+                    if(err){
+                        console.log(err);
+                    }else {
+                        res.render("./courses/show", { course: foundCourse, quizzes: allQuizzes, course_id:req.params.id, noMatch: noMatch });
+                    }
+                });
+            }           
         }
     });
 });

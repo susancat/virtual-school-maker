@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-N4N724D"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual School Maker</title>
@@ -24,67 +25,39 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+ <!-- Hotjar Tracking Code for https://www.virtualschoolmaker.com -->
 <script>
+    (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:2088739,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KNMMH5WWTJ');
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init();  
+        AOS.init({disable: 'mobile'});
     });
 </script>
-
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KNMMH5WWTJ"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5fa8b8a80a68960861bcef73/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 <body>
-    <nav class="navbar navbar-expand-lg navbar-inverse fixed-top bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="http://www.virtualschoolmaker.com/">Virtual School Maker</a>
-            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <% if (currentUser) {%>
-                        <li class="nav-item active" >
-                            <a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/quizbank"><i class="fa fa-cc-discover" aria-hidden="true"></i> Public Quizzes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/quizzes"><i class="fa fa-tasks" aria-hidden="true"></i> My Quizzes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/courses"><i class="fa fa-book" aria-hidden="true"></i> My Classes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/reports"><i class="fa fa-list" aria-hidden="true"></i> Reports</a>
-                        </li>
-                        <li class="nav-item" style="margin-top: 2px;">
-                            <form class="form-inline mr-auto">
-                                <a class="btn btn-outline-dark" href="/quizzes/new" role="button"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;&nbsp;Create</a>
-                            </form>
-                        </li>
-                    <%}%>
-                </ul> 
-                <ul class="nav navbar-nav" id="navbar_thing" style="margin-left: auto; padding-left: 5%;">
-                    <% if(!currentUser) { %>
-                        <li><a href="/login" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;&nbsp;Login&nbsp;&nbsp;</a></li>
-                        <li ><a href="/register" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</a></li>
-                    <% } else { %>
-                        <li><a href="#" class="text-decoration-none" id="navbar_stuff" ><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Signed in as&nbsp;&nbsp;<%= currentUser.username %>&nbsp;&nbsp;</a></li>
-                        <li><a href="/logout" class="text-decoration-none" id="navbar_stuff"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;Logout&nbsp;&nbsp;</a></li>
-                    <% } %>
-                </ul>
-        </div>
-    </div>
-</nav>
-      
-    <div class="container">
-    <% if(error && error.length > 0) { %>
-        <div class="alert alert-danger" role="alert">
-            <%= error %>
-        </div>
-    <% } %>
-    <% if(success && success.length > 0) { %>
-        <div class="alert alert-success" role="alert">
-            <%= success %>
-        </div>
-    <% } %>
-    </div>
-    <main class="flex-fill">

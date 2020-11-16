@@ -1,10 +1,16 @@
+*{
+    scroll-behavior: smooth;
+    background-repeat: no-repeat;
+}
+/*------------*/
 body {
-    padding-top: 70px;
     overflow-x: hidden;
 }
 
 .cardIndex {
-    transition: all .2s;  
+    /* transition: transform .3s ease-in 2s !important;   */
+    width: 45%;
+    border: 0.5rem solid #fff;
 }
 
 .cardIndex:hover {
@@ -82,7 +88,7 @@ rect.bar-rect { fill: green; }
 .modal{
     z-index:1000000;
 }
-
+/* introjs ***************************************************** */
 .introjs-fixParent.modal{
     z-index:10000000 !important;
 }
@@ -98,6 +104,15 @@ rect.bar-rect { fill: green; }
 .introjs-hint-pulse {
     background-color: rgba(249, 219, 4, .5) !important;
     border: 5px solid rgba(243, 247, 5, .90) !important;
+}
+/* introjs ***************************************************** */
+#first_jumbotron {
+    margin: 0;
+    text-align: center; 
+    background-color: white; 
+    background-repeat: no-repeat; 
+    background-size: 100%; 
+    background-position: center; 
 }
 
 @media(max-width:800px){
@@ -137,5 +152,169 @@ rect.bar-rect { fill: green; }
     #create_div{
         width: 80% !important;
     }
-
+    #scroll_button {
+        display: none;
+      }
+      #down_arrow{
+        display: none;
+      }
+    
+      #testa_text {
+        font-size: 5vw;
+      }
+      #first_jumbotron h1{font-size: 3vw;
+        margin-top: 10%;
+      }
+      #first_jumbotron {
+        margin-top: -5% !important;
+      }
+    
+      #wrapper{
+        display: none;
+      }
+      #info.png{
+        width: 80% !important;
+      }
+      .hidden_img{
+        display: block;
+      }
+      .shown_img{
+        display: none;
+      }
+    
+      .carousel-control-prev {
+        display: none;
+      }
+      .carousel-control-next {
+        display: none;
+      }
+      #games_jumbotron {
+        background-size: auto 100% !important;
+        background-position: center;
+      }
+    
+      #lethal_jumbotron{
+        background-size: auto 100% !important;
+      }
+    
+      #info_png {
+        width: 80% !important;
+      }
+    
+      #info_image {
+        width: 100%;
+        height: 60%;
+      }
+      #info_box {
+        width: 100%;
+        border: none;
+        height: 25%;
+      }
+    
+      #info_box h1 {
+        font-size: 3vw !important;
+      }
+      #info_row {
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #info_title{
+        font-size: 5vw;
+      }
+    
+      #info_h3{
+        font-size: 3vw;
+      }
+      #testa_container {
+        padding: 0;
+        margin-left: 10%;
+      }
+      
+      #testa_container_right {
+        margin-right: 10% !important;
+      }
+      
+      #info_box{
+        box-shadow: 3px 3px grey;
+      }
+      
+      #end_button:hover{
+        background-color: white;
+        color: grey;
+      }
+      
+      #end_button {
+        color: white;
+      }
+      
+      .spot {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+          
+      #svg-wrapper {
+        margin-top: 0;
+        position: relative;
+        width: 150px;
+        height: 40px;
+        display: inline-block;
+        border-radius: 3px;
+        margin-left: 5px;
+        margin-right: 5px
+      }
+      
+      #shape {
+        stroke-width: 6px;
+        fill: transparent;
+        stroke: #009FFD;
+        stroke-dasharray: 85 400;
+        stroke-dashoffset: -220;
+        transition: 1s all ease;
+      }
+      
+      #text {
+        margin-top: -35px;
+        text-align: center;
+      }
+      
+      #text a {
+        color: white;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 1.1em;
+      }
+      
+      .svg-wrapper:hover #shape {
+        stroke-dasharray: 50 0;
+        stroke-width: 3px;
+        stroke-dashoffset: 0;
+        stroke: #06D6A0;
+      }
 }
+@media(min-width:800px){
+    #first_jumbotron{
+      background-attachment: fixed;
+    }
+    #games_button{
+      margin-bottom: 10%;
+    }
+    #games_jumbotron{
+      background-size: 100% 100% !important;
+      margin-bottom: 0;
+    }
+  
+    #info_png {
+      width: 50% !important;
+    }
+    #info_image{
+      width: 100%;
+      height: 52%;
+    }
+    #info_box {
+      height: 20% !important;
+    }
+  }
