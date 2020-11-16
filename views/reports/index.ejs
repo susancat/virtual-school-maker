@@ -13,7 +13,9 @@
                 </tr>
             </thead>
             <tbody>
-                <% course.reports.forEach(function(report){ %>            
+                <% let count = 0 %>
+                <% course.reports.forEach(function(report){ %>
+                    <% count ++ %>              
                 <tr class="">
                     <th scope="row"><%= report.quizname %></th>
                     <td><%= report.dateCreated.toLocaleString() %></td>
@@ -38,7 +40,15 @@
                 </tr>
                 <%}) %>   
             </tbody>
-            </table>          
+            </table>
+            <% if(count == 0) { %>
+                <div class="container">
+                    <h1 class="font-weight-bold text-center">Looks like you haven't made a report yet</h1>
+                    <div class="ml-auto mt-5 text-center">
+                        <a class="btn btn-success" href="/courses/<%= course._id %>"><i class="fa fa-plus" aria-hidden="true"></i> Go back to create one!</a>
+                    </div>
+                </div>
+            <%}%>             
     </div>     
 </div>
 
