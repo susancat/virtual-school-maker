@@ -11,6 +11,7 @@ const questionSchema = new Schema({
     answer: String,
     level: String,
     category: String,
+    image: { data: Buffer, contentType: String },
     public: { type: Boolean, default: false },
     author: {
         id: {

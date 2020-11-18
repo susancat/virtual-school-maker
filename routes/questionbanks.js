@@ -16,46 +16,49 @@ router.get("/:question_id", middleware.isLoggedIn, async function(req, res){
                     console.log(err);
                     res.redirect("/quizzes");
                 }else {
-                    foundQuestion.author = {
+                    const newQuestion = foundQuestion
+                    // newQuestion._id = mongoose.Types.ObjectId();
+                    newQuestion.author = {
                         id: quiz.author.id,
                         username: quiz.author.id.username
                     };
-                    Question.findById(req.params.question_id, function(err,existQuestion){
+                    newQuestion.public = false
+                    Question.create(newQuestion,async function(err,question){
                         if(err){
                             console.log(err)
-                        } else {
-                            //if question collcection already has this question, just save it under this quiz
-                            if (existQuestion) {
-                                existQuestion.author = {
-                                    id: quiz.author.id,
-                                    username: quiz.author.id.username
-                                }
-                                quiz.questions.push(existQuestion);
-                                quiz.save()
-                            } else {
-                                //else create in question collcection and save
-                                Question.create(foundQuestion,function(err,question){
-                                    if(err){
-                                        console.log(err)
-                                    }else {
-                                        question.save()
-                                        quiz.questions.push(question);
-                                        quiz.save()
-                                    }
-                                    
-                                })
-                            }
+                        }else {
+
+                            await question.save()
+                            quiz.questions.push(question);
+                            quiz.save()
                             req.flash("success", "Question imported successfully!");
                             res.redirect("/quizzes/"+quiz._id);
                         }
-                    })
                     
+                        
+                    })
                 }
             })
-        }   
-        
+        }
     })
 })
+                    // newQuestion.isNew = true
+                    // Question.findById(req.params.question_id, function(err,existQuestion){
+                    //     if(err){
+                    //         console.log(err)
+                    //     } else {
+                    //         //if question collcection already has this question, just save it under this quiz
+                    //         if (existQuestion) {
+                    //             existQuestion.author = {
+                    //                 id: quiz.author.id,
+                    //                 username: quiz.author.id.username
+                    //             }
+                    //             quiz.questions.push(existQuestion);
+                    //             quiz.save()
+                    //         } else {
+                    //             //else create in question collcection and save
+
+        
 
 router.get("/", middleware.isLoggedIn, async function(req, res){
     var search = '';
@@ -73,7 +76,7 @@ router.get("/", middleware.isLoggedIn, async function(req, res){
                         if(allQuestions.length < 1){
                             noMatch = 'No question match that query, please try again!';
                         }
-                        res.render("./questionbanks/list", {quiz:foundQuiz, questions: allQuestions, noMatch: noMatch, search: req.query.search}); //if we want to pass any var, can add inside {}
+                        res.render("./questionbanks/list", { quiz:foundQuiz, questions: allQuestions, noMatch: noMatch, search: req.query.search }); //if we want to pass any var, can add inside {}
                     }
                 });
             } else { 
@@ -82,7 +85,7 @@ router.get("/", middleware.isLoggedIn, async function(req, res){
                         console.log(err);
                     }else {
                         // console.log("found quizzes");
-                        res.render("./questionbanks/list", {quiz:foundQuiz,questions: allQuestions, noMatch: "Find and add questions", search:search}); //if we want to pass any var, can add inside {}
+                        res.render("./questionbanks/list", { quiz:foundQuiz,questions: allQuestions, noMatch: "Find and add questions", search:search }); 
                     }
                 });
             }

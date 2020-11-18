@@ -10,7 +10,7 @@ const Report = require("../models/report");
 const Share = require("../models/share");
 const middleware = require("../middleware");
 const butter = require('buttercms')('c50ea105ed2cdc44abe084a42fe997bca3ae187e');
-//85b519dc8cff91e5df1cf632ba73d4b92a420506
+
 router.get('/', function(req, res, next) {
     butter.page.retrieve('*','home_page').then(function(resp){
       var page = resp.data.data;
@@ -70,9 +70,9 @@ router.post("/register", function(req, res){
         } else {
             User.register(newUser, req.body.password, function(err, user){
                 if(err){
-                    // req.flash("error", err.message);
-                    req.flash("error","User name is already used!")
-                    return res.render("register");
+                    req.flash("error", err.message);
+                    // req.flash("error","User name is already used!")
+                    res.redirect("back");
                 }passport.authenticate("local")(req, res, function(){
                     req.flash("success","Welcome to Quiz Trivia! " + user.username);   
                     res.redirect("/dashboard");

@@ -8,22 +8,22 @@
         <div style="width:30%; margin: 25px auto;">
             <form action="/courses/<%= course._id %>/?_method=PUT" method="POST">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[name]" value="<%= course.name %>">
+                    <input class="form-control" type="text" name="course[name]" value="<%= course.name %>" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[classID]" value="<%= course.classID %>">
+                    <input class="form-control" type="text" name="course[classID]" value="<%= course.classID %>" placeholder="Class ID">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[teacher]" value="<%= course.teacher %>">
+                    <input class="form-control" type="text" name="course[teacher]" value="<%= course.teacher %>" placeholder="Teacher's name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[tutor]" value="<%= course.tutor %>">
+                    <input class="form-control" type="text" name="course[tutor]" value="<%= course.tutor %>" placeholder="Tutor's name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[subject]" value="<%= course.subject %>">
+                    <input class="form-control" type="text" name="course[subject]" value="<%= course.subject %>" placeholder="Subject">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="course[description]" value="<%= course.description %>">
+                    <input class="form-control" type="text" name="course[description]" value="<%= course.description %>" placeholder="Description">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit</button>

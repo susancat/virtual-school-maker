@@ -5,6 +5,20 @@ const Question = require("../models/question");
 const QuestionBank = require("../models/questionbank");
 const middleware = require("../middleware");
 
+const fs = require("fs");
+const path = require("path");
+const multer = require("multer");
+const storage = multer.diskStorage({ 
+    destination: (req, file, cb) => { 
+        cb(null, './uploads') 
+    }, 
+    filename: (req, file, cb) => { 
+        cb(null, file.originalname) 
+    } 
+}); 
+  
+const upload = multer({ storage: storage }); 
+
 //Questions new
 router.get("/new", middleware.isLoggedIn, function(req, res){
     Quiz.findById(req.params.id, function(err, quiz){
@@ -16,8 +30,8 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
         }
     })    
 })
-//questions create
-router.post("/",  async function(req, res){
+//questions create, if public equals to true, and not exist in bank, create a copy
+router.post("/", upload.single('image'), async function(req, res){
     const { text, option1, option2, option3, option4, category, level, public } = req.body;
     const author = {
         id: req.user._id,
@@ -69,6 +83,48 @@ router.post("/",  async function(req, res){
        }
     });
 });
+router.get("/:question_id",async function(req,res){
+    await Quiz.findById( req.params.id, async function(err,foundQuiz){
+        if(err){
+            console.log(err);
+        }else {
+            await Question.findById(req.params.question_id, function(err,foundQuestion){
+                res.render("./quizzes/show", { quiz: foundQuiz, question: foundQuestion });
+            })
+        }
+    });
+})
+
+router.post("/:question_id/image", upload.single('image'), middleware.isLoggedIn, async function(req, res){
+    let image = null;
+    if (req.file) {
+        image = { 
+        data: (fs.readFileSync(path.join('./uploads/' + req.file.filename))).toString('base64'),
+        contentType: 'image/jpg'
+        }
+    }else {
+        image = null
+    } 
+    await Quiz.findById(req.params.id, async function(err, foundQuiz){
+        if (err) {
+            console.log(err);
+        }else {
+            await Question.findById(req.params.question_id, function(err, foundQuestion){
+                if (err) {
+                    console.log(err);
+                }else {
+                    foundQuestion.image = image
+                    foundQuestion.save()
+                    // foundQuiz.save()
+                    // res.render("quizzes/show", { quiz: foundQuiz, quiz_id: req.params.id, question: foundQuestion });
+                    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+                    res.redirect("/quizzes/" + req.params.id);
+                }
+            });
+        }
+    });    
+});
+
 //edit question ROUTE
 router.get("/:question_id/edit", middleware.checkQuestionOwnership, function(req,res){
     //need to find the question id
@@ -98,6 +154,18 @@ router.delete("/:question_id", middleware.checkQuestionOwnership, function(req, 
             res.redirect("back");
         } else {
             req.flash("success", "Question deleted successfully!")
+            res.redirect("/quizzes/" + req.params.id);
+        }
+    });
+});
+
+router.delete("/:question_id/image", middleware.checkQuestionOwnership, async function(req, res){
+    await Question.findById(req.params.question_id, function(err,foundQuestion){
+        if(err){
+            res.redirect("/quizzes/" + req.params.id);
+        }else {
+            foundQuestion.image = undefined;
+            foundQuestion.save()
             res.redirect("/quizzes/" + req.params.id);
         }
     });

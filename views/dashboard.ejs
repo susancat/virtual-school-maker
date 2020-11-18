@@ -12,7 +12,8 @@
             <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <div class="card-header">
                     <% if(currentUser) { %>
-                    <h4 class="card-title">Welcome! <%= currentUser.username %></h4>
+                    <h4 class="card-title">Welcome! </h4>
+                    <h5><%= currentUser.username %></h5>
                 </div>
                 <div class="card-body">
                     <h5 class="card-text">Plan: Basic</h5>
@@ -33,20 +34,23 @@
                                 </div>  
                             <% } %> 
                         <%}) %>
-                        <% if(count==0) {%>
+                        <% if(count == 0) {%>
                             <div class="card-title mb-2 text-muted">
                                 <h3>You have no classes</h3>
-                                <a href="/courses/new"class="card-link">Create One Now!</a>
                             </div>
                         <% } %> 
-                    </div>                         
-                <div class="card-footer text-muted text-right">
-                    <a href="/courses" class="card-link">See All</a>
-                </div>                                  
+                    </div>
+                        <div class="card-footer text-muted text-right">
+                            <% if(count == 0) { %>
+                                <a href="/courses/new"class="card-link">Create One Now!</a>
+                            <% } else { %>  
+                                <a href="/courses" class="card-link">See All</a>
+                            <% } %>
+                        </div>                                                     
             </div>
             <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
                 <div class="card-header">
-                    <h4 class="card-title">Top Picked Games</h4>
+                    <h4 class="card-title">Most Popular Games</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-2">
@@ -96,21 +100,24 @@
                             </div>
                         <% } %> 
                     <%}) %>
-                    <% if(counter==0) {%>
+                    <% if(counter == 0) {%>
                         <div class="card-title mb-2 text-muted">
                             <h3>Looks like you have no quizzes</h3>
-                            <a href="/quizzes/new"class="card-link">Create One Now!</a>
                         </div>
                     <% } %> 
                 </div>
                 <div class="card-footer text-right">
-                    <a href="/quizzes" class="card-link">See All</a>
+                    <% if(counter == 0) { %>
+                        <a href="/quizzes/new"class="card-link">Create One Now!</a>
+                    <% } else { %>  
+                        <a href="/quizzes" class="card-link">See All</a>
+                    <% } %>
                 </div>
             </div>
             <div class="card mb-2" data-aos="fade-up" data-aos-duration="1500">
                 <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">Top Picked Public Quizzes</h4>
-                    <button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>
+                    <h4 class="card-title">Most Popular Public Quizzes</h4>
+                    <button style="border-radius: 50%" class="btn btn-outline-warning" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>
                 </div>
                 <div class="card-body">
                     <% quizzes.forEach(function(quiz){ %>

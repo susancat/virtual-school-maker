@@ -51,7 +51,9 @@ mongoose.connect(DATABASEURL || LOCALDB, {
 app.use(require("express-session")({
     secret: "One again rusty wins",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    httpOnly: true,  // Don't let browser javascript access cookies.
+    secure: true // Only use cookies over https.
 }));
 
 app.use(passport.initialize());
@@ -64,6 +66,12 @@ app.use(function(req, res, next){
     res.locals.success = req.flash("success");
     next(); //if no next, it will stop at middleware
 });
+
+app.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+    // Or, if you don't want to automatically detect the domain name from the request header, you can hard code it:
+    // res.redirect('https://example.com' + req.url);
+})
 
 app.use(indexRoutes);
 app.use(authRoutes);

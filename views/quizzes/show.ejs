@@ -2,18 +2,31 @@
 <%- include("../partials/vsmHeader") %>
 
 <div class="row mr-3" >
-    <div class="col-md-4">
-        <img class="card-img ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="quiz image">  
-        <div class="container mt-2 ml-2" style="padding-right : 0;">
-            <h4>Quiz Name: <a><%= quiz.title%></a></h4>
+    <div class="col-md-4 card bg-light">
+        <img class="card-img-top ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="">  
+        <div class="card-body mt-2 ml-2" style="padding-right : 0;">
+            <h4 class="d-flex justify-content-between">Quiz Name: <%= quiz.title%><span>
+              <div class="btn-group dropright" style="padding: 0;">
+                <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-position="top">
+                <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <form action="/quizzes/<%= quiz._id %>/image?_method=DELETE" method="POST">
+                        <input type="hidden" name="image" value="<%= quiz.image %>">
+                        <button class="dropdown-item" type="submit">Delete Image</button>
+                    </form>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#uploadImage">Change Image</button>
+                </div>
+            </div> 
+            </span></h4>
             <h6>Category: <%= quiz.category%></h6>
-            <h6 class="pull-right">Difficulty level: <%= quiz.level %></h6>
+            <h6 class="">Difficulty level: <%= quiz.level %></h6>
             <p><%= quiz.description%></p>
             <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
-                <div class="mb-2">
-                    <a data-hint="When finish editing, press 'Play' and go to 'Class' or go to step 3 in your Dashboard page." data-hintPosition="top-right" data-position="right" class="btn btn-xs btn-success" data-toggle="modal" data-target="#quizPlay">&nbsp;Play&nbsp;</a>
-                    <a class="btn btn-xs btn-warning" href="/quizzes/<%= quiz._id %>/edit">&nbsp;Edit&nbsp;</a>
-                    <form id="del" action="/quizzes/<%= quiz._id %>?_method=DELETE" method="POST">
+                <div class="mb-2 row">
+                    <a data-hint="When finish editing, press 'Play' and go to 'Class' or go to step 3 in your Dashboard page." data-hintPosition="top-right" data-position="right" class="btn btn-xs btn-success mr-1" data-toggle="modal" data-target="#quizPlay">&nbsp;Play&nbsp;</a>
+                    <a class="btn btn-xs btn-warning mr-1" href="/quizzes/<%= quiz._id %>/edit">&nbsp;Edit&nbsp;</a>
+                    <form action="/quizzes/<%= quiz._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-xs btn-danger">Delete</button>
                     </form>
                 </div>
@@ -24,7 +37,7 @@
                 <h6>A Public Quiz</h6>
             <% } %>
             <p class="mt-2"><em>Created By <%= quiz.author.username %></em></p>
-        </div>
+        </div>   
     </div>
 
     <div class="col-md-8 mt-4" id="heading-jumbotron"> 
@@ -45,31 +58,73 @@
                 
                 <hr>
                 <% quiz.questions.forEach(function(question){ %>
-                <div class="card col-md-12 bg-light border-success mb-3">
-                    <div class="row"> 
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= question.text %></h5>
-                                <p class="card-text">Option 1: <%= question.option1 %>&nbsp;&nbsp;Option 2: <%= question.option2 %>&nbsp;&nbsp;Option 3: <%= question.option3 %>&nbsp;&nbsp;Option 4: <%= question.option4 %></p>
-                                <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
-                                    <a id="btn1" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editQuestion" data-remote="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/edit" data-quiz_id="<%= quiz._id %>" data-question._id="<%= question._id %>">&nbsp;Edit&nbsp;</a>
-                                    <form id="del" action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>?_method=DELETE" method="POST">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form>
-                                <% } %>
+                    <div class="card col-md-12 bg-light border-success mb-3">
+                        <div class="row"> 
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title "><%= question.text %></h5>
+                                    <p class="card-text">Option 1: <%= question.option1 %>&nbsp;&nbsp;Option 2: <%= question.option2 %>&nbsp;&nbsp;Option 3: <%= question.option3 %>&nbsp;&nbsp;Option 4: <%= question.option4 %></p>
+                                    <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                                      <div class="row">
+                                        <a id="btn1" class="btn btn-xs btn-warning mr-1" data-toggle="modal" data-target="#editQuestion" data-remote="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/edit" data-quiz_id="<%= quiz._id %>" data-question._id="<%= question._id %>">&nbsp;Edit&nbsp;</a>
+                                        <form action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>?_method=DELETE" method="POST">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+                                      </div>
+                                    <% } %>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                          <img class="card-img" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" style="max-width: 15rem" alt="question image">      
+                            <div class="col-md-4 d-flex align-items-center">
+                              <% if (question) { %>
+                                <img class="card-img" src="data:<%=question.image.contentType%>;base64,<%= question.image.data %>" style="max-width: 15rem" alt="">
+                                <div class="btn-group dropright align-self-start">
+                                  <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="editQuestionImage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-position="top">
+                                  <i class="fas fa-ellipsis-v"></i>
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="editQuestionImage">
+                                      <form action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/image?_method=DELETE" method="POST">
+                                          <input type="hidden" name="image" value="<%= question.image %>">
+                                          <button class="dropdown-item" type="submit">Delete Image</button>
+                                      </form>
+                                      <form id="imageForm" action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/image" method="POST" enctype="multipart/form-data">                                              
+                                          <input id="questionImage" class="dropdown-item" type="file" name="image">
+                                          <!-- <button type="submit" class="btn">Upload</button> -->
+                                      </form>
+                                  </div>
+                              </div>   
+                              <% } %>                             
+                            </div>  
                         </div>
                     </div>
-                </div>
                 <% }) %>
             </div>
          </div>    
     </div>
 </div>
 <!-- Modals -->
+<div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Select an image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/quizzes/<%= quiz._id %>/image" method="POST" enctype="multipart/form-data">   
+          <input class="dropdown-item" type="file" name="image">
+          <hr>
+          <div class="float-right">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary ml-auto">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="quizPlay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -199,5 +254,8 @@ document.getElementById('startButton').onclick = function() {
   introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
         window.location.href='/quizzes/<%= quiz._id %>/questionbank?multipage=1'      
     });
+};
+document.getElementById("questionImage").onchange = function() {
+    document.getElementById("imageForm").submit();
 };
 </script>

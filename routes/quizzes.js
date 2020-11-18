@@ -74,21 +74,41 @@ router.post("/", upload.single('image'), middleware.isLoggedIn, async function(r
             }
     });
 });
-    // quizzes.push({title: site, image: image});
+// quizzes.push({title: site, image: image});
 
+router.post("/:id/image", upload.single('image'), middleware.isLoggedIn, async function(req, res){
+    let image = null;
+    if (req.file) {
+        image = { 
+        data: (fs.readFileSync(path.join('./uploads/' + req.file.filename))).toString('base64'),
+        contentType: 'image/jpg'
+        }
+    }else {
+        image = null
+    } 
+    await Quiz.findById(req.params.id).populate("questions"). exec(function(err, foundQuiz) {
+            if (err) {
+                console.log(err);
+            }else {
+                foundQuiz.image = image
+                foundQuiz.save()
+                res.render("./quizzes/show", { quiz: foundQuiz });
+            }
+    });
+});
 //new gain the data and send
 router.get("/new", middleware.isLoggedIn, function(req, res){ //notice about "/" important!!
     res.render("./quizzes/new", {baseUrl: req.baseUrl}); // the form
 });
 
 //not ask for login for roblox fetching data temporarily
-router.get("/:id", middleware.isLoggedIn, function(req, res){
+router.get("/:id", middleware.isLoggedIn, async function(req, res){
     //provide id for the item by req.params.id
-    Quiz.findById(req.params.id).populate("questions"). exec(function(err, foundQuiz){
+    await Quiz.findById(req.params.id).populate("questions"). exec(function(err, foundQuiz){
         if(err) {
             console.log(err);
         }else{
-            res.render("./quizzes/show", {quiz: foundQuiz});
+            res.render("./quizzes/show", { quiz: foundQuiz });
         }
     });
 });
@@ -128,6 +148,19 @@ router.delete("/:id", middleware.checkOwnership, async function(req, res){
             res.redirect("/quizzes");
         }else {
             res.redirect("/quizzes");
+        }
+    });
+});
+
+//DELETE ROUTE
+router.delete("/:id/image", middleware.checkOwnership, async function(req, res){
+    await Quiz.findById(req.params.id, function(err,foundQuiz){
+        if(err){
+            res.redirect("/quizzes/" + req.params.id);
+        }else {
+            foundQuiz.image = undefined;
+            foundQuiz.save()
+            res.redirect("/quizzes/" + req.params.id);
         }
     });
 });
