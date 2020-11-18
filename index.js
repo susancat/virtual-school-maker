@@ -67,11 +67,17 @@ app.use(function(req, res, next){
     next(); //if no next, it will stop at middleware
 });
 
-app.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
-    // Or, if you don't want to automatically detect the domain name from the request header, you can hard code it:
-    // res.redirect('https://example.com' + req.url);
-})
+//HTTPS redirect middleware
+function ensureSecure(req, res, next) {
+    //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
+    if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
+        //Serve Angular App by passing control to the next middleware
+        next();
+    } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
+        //Redirect if not HTTP with original request URL
+        res.redirect('https://' + req.hostname + req.url);
+    }
+}
 
 app.use(indexRoutes);
 app.use(authRoutes);
@@ -84,6 +90,7 @@ app.use("/courses/:id/player-data", playerRoutes);
 app.use("/courses/:id/emails", emailRoutes);
 app.use("/courses/:id/reports", reportRoutes);
 app.use("/courses/:id/assignments", shareRoutes);
+app.use('/', ensureSecure);
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Virtual School Maker has started");
