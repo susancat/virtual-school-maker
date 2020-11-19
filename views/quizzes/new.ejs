@@ -32,6 +32,7 @@
                 </div>
                 <div class="form-inline mb-2">
                     <label for="img">Upload Image&nbsp;&nbsp;</label>
+                    <img id="preview" src="#" alt="" />
                     <input class="form-control ml-auto" style="width: 70%" type="file" id="img" name="image">
                 </div>
                 <div class="form-inline">
@@ -53,4 +54,20 @@ $('#op1').prop('checked', false);
 if (RegExp('multipage', 'gi').test(window.location.search)) {
     introJs().setOption("showStepNumbers",false).start()
 }
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#preview').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+$("#img").change(function() {
+  readURL(this);
+});
 </script>

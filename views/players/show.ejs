@@ -3,17 +3,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <p class="lead"><a href="/courses/<%= course_id %>/">View the classes info</a></p>
+            <p class="lead"><a href="/courses/<%= course_id %>/">Back to the class</a></p>
         </div>
         <div class="col-md-9">
-            <div class="card">
+            <div class="card border-success">
                 <div class="card-body">
-                    <h4 class="pull-right">Student Name: <%= player.name %></h4>
-                    <h4 class="pull-right">Student ID: <%= player.studentID %></h4>
-                    <h4 class="pull-right">Class ID: <%= player.classID %></h4>
-                    <h4 class="pull-right">Points: <%= player.points %></h4>
-                    <h4 class="pull-right">Cash: <%= player.cash %></h4>
-                    <h4 class="pull-right">Remark: <%= player.remark %></h4>
+                    <h4 class="">Student Name: <%= player.name %></h4>
+                    <h4 class="">Student ID: <%= player.studentID %></h4>
+                    <h4 class="">Class ID: <%= player.classID %></h4>
+                    <h4 class="">Points: <%= player.points %></h4>
+                    <h4 class="">Cash: <%= player.cash %></h4>
+                    <h4 class="">Remark: <%= player.remark %></h4>
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-xs btn-warning" href="/courses/<%= course_id %>/player-data/<%=player.userID %>/edit">&nbsp;Edit&nbsp;</a>

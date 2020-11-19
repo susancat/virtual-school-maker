@@ -9,7 +9,7 @@
                 <div class="col-md-3">
                     <form action="/quizzes/" method="GET" class="form-inline">
                         <div class="input-group pt-2">
-                            <input type="text" class="form-control" name="search" placeholder="Search quiz">
+                            <input type="text" class="form-control" name="search" placeholder="Search quizzes">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </span>
@@ -54,7 +54,12 @@
                             <% } else { %>
                                 <span><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
                             <% } %>
-                            <a href="/quizzes/<%= quiz._id %>" class="btn btn-primary stretched-link">Edit</a>
+                            <div class="row">
+                                <a href="/quizzes/<%= quiz._id %>" class="btn btn-xs btn-primary stretched-link mr-1">&nbsp;Edit&nbsp;</a>
+                                <form action="/quizzes/<%= quiz._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-xs btn-danger" style="z-index:2;position:relative;">Delete</button>
+                                </form>
+                            </div>
                     </div>
                 </div>
             <% } %> 

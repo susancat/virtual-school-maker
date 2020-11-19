@@ -2,12 +2,12 @@
 <%- include("../partials/vsmHeader") %>
 
 <div class="row mt-5" id="heading-jumbotron">
-    <div class="col-md-4">
-        <img class="card-img ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>"  alt="">  
-        <div class="container mt-2 ml-2">
+    <div class="col-md-4 card bg-light">
+        <img class="card-img-top ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>"  alt="">  
+        <div class="card-body mt-2 ml-2" style="padding-right : 0;">
             <h4>Quiz Name: <a><%= quiz.title%></a></h4>
             <h6>Category: <%= quiz.category%></h6>
-            <h6 class="pull-right">Difficulty level: <%= quiz.level %></h6>
+            <h6 class="">Difficulty level: <%= quiz.level %></h6>
             <div class="mb-2">
                 <a href="/quizbank/<%= quiz._id %>/edit" class="btn btn-primary">Use this Quiz</a>
             </div>
@@ -29,9 +29,13 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"><%= question.text %></h5>
-                                <p class="card-text">Category: <%= question.category %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Difficulty: <%= question.level %></p>
-                            <p class="card-text">option1: <%= question.option1 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option2: <%= question.option2 %></p>
-                            <p class="card-text">option1: <%= question.option3 %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>option4: <%= question.option4 %></p>
+                                <h6 class="card-text">Category: <%= question.category %><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>Difficulty: <%= question.level %></h6>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="card-text">option 1: <%= question.option1 %></h6>
+                                <h6 class="card-text">option 2: <%= question.option2 %></h6>
+                                <h6 class="card-text">option 3: <%= question.option3 %></h6>
+                                <h6 class="card-text">option 4: <%= question.option4 %></h6>
+                            </div>                  
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center">

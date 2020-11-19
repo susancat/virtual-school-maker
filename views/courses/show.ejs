@@ -18,7 +18,7 @@
                                     <div class="container w-100">
                                         <a href="/quizzes/<%= quiz._id %>"class="card-link col-md-6" style="padding-left: 0;"><%= quiz.title %></a>
                                         <div class="btn-group dropright col-md-3 w-25 float-right" style="padding: 0;">
-                                            <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="4" data-intro="Choose one of your quiz and click 'Play with this quiz', then 'Pass PIN to email'." data-position="top">
+                                            <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="7" data-intro="Choose one of your quiz and click 'Play with this quiz' to create a report, then 'Pass quiz ID to email'." data-position="top">
                                             <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -28,9 +28,9 @@
                                                     <button class="dropdown-item" type="submit">Play with this quiz</button>
                                                 </form>
                                                 <form action="/courses/<%= course._id %>/?_method=PUT" method="POST">
-                                                    <button class="dropdown-item" name="course[quizid]" value="<%= quiz._id %>">Pass PIN to email</button>
+                                                    <button class="dropdown-item" name="course[quizid]" value="<%= quiz._id %>">Pass ID to email</button>
                                                 </form>
-                                                <a class="dropdown-item" data-toggle="modal" data-target="#quizPlay" data-id="<%= quiz._id %>">Copy the PIN</a>
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#quizPlay" data-id="<%= quiz._id %>">Copy the ID</a>
                                             </div>
                                         </div> 
                                     </div>                                        
@@ -63,9 +63,9 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card border-success">
+                    <div class="card border-success" data-step="1" data-intro="Students are enrolled automatically when they login the Roblox game with class ID, assigned quiz ID and Game Link/Private Server Link." data-position="bottom-middle-aligned">
                         <div class="card-body">
-                            <h4 class='card-title d-flex justify-content-between mb-0'><span>Class Name: <%= course.name %>&nbsp;&nbsp;<button style="border-radius: 50%" class="btn btn-outline-info" data-container="body" data-toggle="popover" data-placement="right" title="Enroll students in a class" data-content="Students are enrolled automatically when they login the Roblox game, you can use any message tool besides our group email, just make sure to share all the following info: class ID, quiz PIN and Game Link/Private Server Link.">&nbsp;<i class="fas fa-info"></i>&nbsp;</button></span></h4>
+                            <h4 class='card-title d-flex justify-content-between mb-0'><span>Class Name: <%= course.name %>&nbsp;&nbsp;</span></h4>
                             <a id="startButton" class="card-link btn btn-success btn__tour mb-1" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a>
                             <div class="row pt-3">
                                 <div class="col-sm">
@@ -90,8 +90,8 @@
         
                     <div class="well mt-5 ml-3 mr-3">
                         <div class="row">
-                            <div class="col-md-6 ml-3 text-left">
-                                <h5 class=""><i class="fa fa-user" aria-hidden="true"></i> Lastest Student Activities</h5>
+                            <div class="col-md-6 ml-3 text-left" data-step="2" data-intro="Students' latest records will be shown below, you can reward them some game cash for purchasing within games.">
+                                <h5 class=""><i class="fa fa-user" aria-hidden="true"></i> Lastest Student Activity</h5>
                             </div>
                         </div>
                         <div class="row table-responsive-sm">
@@ -116,7 +116,7 @@
                                             <td>
                                                 <form action="/courses/<%= course_id %>/player-data/<%=player.userID %>?_method=PUT" method="POST" style="padding-right:0">
                                                     <div class="inline">
-                                                        <input type="text" class="ml-3" style="max-width: 25%;min-width:10%" name="player[cash]" value="<%= player.cash %>" >
+                                                        <input type="number" min="<%= player.cash %>" step="100" class="ml-3" style="max-width: 25%;min-width:10%" name="player[cash]" >
                                                         <button class="btn btn-sm btn-success ">Reward</button>
                                                     </div>
                                                 </form>
@@ -135,7 +135,7 @@
 <!-- right-side   -->
     <div class="col-md-3">         
         <div class="accordion" id="gameAccordion">
-            <div class="card mr-3 mb-2 border-success" data-step="1" data-intro="Choose a Roblox game." data-position="left">
+            <div class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. Click a selected Roblox game first." data-position="left">
                 <div class="card-header">
                     <p class="lead"><i class="fa fa-gamepad" aria-hidden="true">&nbsp;&nbsp;</i>Choose a game</p>      
                 </div>
@@ -147,8 +147,8 @@
                     <div class="card-body">
                         <div class="mt-2">
                             <div class="btn-group dropup">
-                                <a class="btn btn-link" data-step="2" data-intro="Try play a game by link." href="<%= course.gamelink1 %>" style="text-decoration: none; padding-left: 0" target="_blank">Game Link</a>
-                                <button class="btn btn-link" type="button" style="border-radius: 3px;text-decoration: none;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="3" data-intro="Pass the game link to email, share it to students for playing.">
+                                <a class="btn btn-link" data-step="5" data-intro="You can try play a game with a random quiz." href="<%= course.gamelink1 %>" style="text-decoration: none; padding-left: 0" target="_blank">Game Link</a>
+                                <button class="btn btn-link" type="button" style="border-radius: 3px;text-decoration: none;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-step="6" data-intro="Pass the game link to email so it will be shared to students for playing.">
                                 <i class="fas fa-ellipsis-v"></i>
                                 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -217,12 +217,12 @@
         </div>
         
         <div class="card mr-3 mb-2 border-success">
-            <p class="lead card-header" data-step="5" data-intro="Share the quiz to students via group email" data-disable-interaction="true"><i class="fa fa-address-book" aria-hidden="true"></i><a href="/courses/<%= course._id %>/emails/new" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;Send group emails</a></p>    
+            <p class="lead card-header" data-step="9" data-intro="Now let's share the IDs and link to students via group email, you can also share them via any other message tools." data-disable-interaction="true"><i class="fa fa-address-book" aria-hidden="true"></i><a href="/courses/<%= course._id %>/emails/new" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;Send group emails</a></p>    
         </div>   
-        <div class="card mr-3 mb-2 border-success">
+        <div class="card mr-3 mb-2 border-success" data-step="3" data-intro="All the students' playing data listed here by quiz, you can update them before deadline, rename or delete.">
             <p class="lead card-header"><i class="fa fa-list" aria-hidden="true"></i><a href="/courses/<%= course._id %>/reports" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the reports</a></p>    
         </div>   
-        <div class="card mr-3 border-success">
+        <div class="card mr-3 border-success" data-step="8" data-intro="You can create assignments so students can read them from Lobby game.">
             <p class="lead card-header"><i class="far fa-copy"></i><a href="/courses/<%= course._id %>/assignments" target="_blank" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;View the assignments</a></p>    
         </div>           
     </div>
@@ -353,7 +353,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Invite students by sharing the quiz PIN: </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Invite students by sharing the quiz ID: </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -362,7 +362,7 @@
       </div>
       <div class="modal-footer">
         <p>Shared with your Class ID together to record students' scores!</p>
-          <button class="btn btn-primary" onclick="copy()">Copy the PIN</button>
+          <button class="btn btn-primary" onclick="copy()">Copy the quiz ID</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

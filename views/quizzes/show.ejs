@@ -3,7 +3,7 @@
 
 <div class="row mr-3" >
     <div class="col-md-4 card bg-light">
-        <img class="card-img-top ml-2" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="">  
+        <img class="card-img-top ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="">  
         <div class="card-body mt-2 ml-2" style="padding-right : 0;">
             <h4 class="d-flex justify-content-between">Quiz Name: <%= quiz.title%><span>
               <div class="btn-group dropright" style="padding: 0;">
@@ -86,10 +86,12 @@
                                           <input type="hidden" name="image" value="<%= question.image %>">
                                           <button class="dropdown-item" type="submit">Delete Image</button>
                                       </form>
-                                      <form id="imageForm" action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/image" method="POST" enctype="multipart/form-data">                                              
+                                      
+                                        <form id="imageForm" action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/image" method="POST" enctype="multipart/form-data">  
                                           <input id="questionImage" class="dropdown-item" type="file" name="image">
-                                          <!-- <button type="submit" class="btn">Upload</button> -->
-                                      </form>
+                                                                          
+                                      </form>                                        
+                                          <!-- <button type="submit" class="btn">Upload</button> -->    
                                   </div>
                               </div>   
                               <% } %>                             

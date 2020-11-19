@@ -14,17 +14,17 @@
                     <input class="form-control" type="text" name="player[studentID]" value="<%=player.studentID %>" placeholder="Student ID">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="player[cash]" value="<%=player.cash %>" placeholder="Cash">
+                    <input class="form-control" type="number" name="player[cash]" min="<%= player.cash %>" step="100" placeholder="Cash">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="player[remark]" value="<%=player.remark %>" placeholder="Remarks">
                 </div>
                
                 <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    <a href="/courses/<%= course_id %>" class="btn btn-lg btn-secondary" style="width:48%">Cancel</a>
+                    <button class="btn btn-lg btn-primary ml-1" style="width:49%;">Submit</button>
                 </div>
             </form>
-            <a href="/courses/<%= course_id %>">Back to Class</a>
         </div>             
     </div> 
 </div>

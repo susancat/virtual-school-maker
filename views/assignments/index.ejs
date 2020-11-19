@@ -1,14 +1,24 @@
 <%- include("../partials/header") %>
 <%- include("../partials/vsmHeader") %>
 <div class="container">
-    <header class="jumbotron">
-        <div class="container">
-            <h1>Assignments</h1>
+    <header class="jumbotron mt-5" id="heading-jumbotron" style="background-image: url(/quiz.jpg); background-size: 100%; background-position: center;">
+        <div class="container" data-aos="fade" data-aos-duration="1000">
+            <h1 class="text-muted font-weight-bold pb-2" >Assignments</h1>
             <div class="row">
-                <div class="col-md-3 ml-auto">
+                <!-- <div class="col-md-3">
+                    <form action="/assignments/" method="GET" class="form-inline">
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" name="search" placeholder="Search assignments">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div> -->
+                <div class="col-md-3 ml-auto pt-2">
                     <a class="btn btn-success" href="/courses/<%= course._id %>/assignments/new"><i class="fa fa-plus" aria-hidden="true"></i> Add New Assignment</a>
                 </div>
-            </div>
+            </div>             
         </div>
     </header>
     <div class="row text-center" style="display: flex; flex-wrap: wrap;">

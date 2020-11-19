@@ -1,6 +1,6 @@
 <%- include("./partials/header") %>
 <%- include("./partials/vsmHeader") %>
-<!-- https://images.pexels.com/photos/356043/pexels-photo-356043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 -->
+
 <div class="container">
     <header class="jumbotron mt-5" id="heading-jumbotron" data-aos="fade" data-aos-duration="500" style="background-image: url(https://images.pexels.com/photos/356043/pexels-photo-356043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center;">
         <div class="container pt-5">
@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <% if(currentUser) { %>
                     <h4 class="card-title">Welcome! </h4>
-                    <h5><%= currentUser.username %></h5>
+                    <h4 class="card-title"><%= currentUser.username %></h4> 
                 </div>
                 <div class="card-body">
                     <h5 class="card-text">Plan: Basic</h5>
@@ -22,7 +22,7 @@
                     <% } %>                
                 </div>
             </div>
-            <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500">
+            <div class="card mb-2" data-aos="fade-right" data-aos-duration="1500" data-step="5" data-intro="You can enroll your students into different class and assign them different quizzes.">
                 <h4 class="card-header">My Classes</h4>
                     <div class="card-body">
                         <% let count = 0 %>
@@ -54,10 +54,10 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-2">
-                        <a href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" class="card-link">Quiz Trivia</a>
+                        <a data-step="1" data-intro="Welcome! You can start from experiencing how your students play with the quiz here." data-disable-interaction="true" href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" class="card-link">Quiz Trivia</a>
                     </div>
                     <div class="mb-2">
-                        <a href="https://www.roblox.com/games/5887877906/Lobby-test-1" class="card-link">Lobby</a>
+                        <a data-step="2" data-intro="Your students can communicate with each other in a classroom alike environment and read your assignments here." data-disable-interaction="true" href="https://www.roblox.com/games/5887877906/Lobby-test-1" class="card-link">Lobby</a>
                     </div>
                 </div>
             </div>
@@ -68,25 +68,25 @@
                     <h4 class="card-title">Quick Guidance for 3 Steps!</h4>
                 </div>
                 <div class="card-body quickstart__body">
-                    <div class="d-flex">
+                    <div class="row d-flex">
                         <h5 class="card-text">Start from here to have fun!&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                         <a class="card-link btn__trans btn btn-outline-light" style="color: green;background-color:#fff;" href="javascript:void(0);" id="startButton">&nbsp;New User Tour&nbsp;</a>
                     </div>       
-                    <div class="quickstart__image d-flex justify-content-center">
+                    <div class="row quickstart__image d-flex justify-content-center">
                         <img src="31.svg" alt="quick start 1" style="width: 10%">
                         <img class="ml-4" src="34.svg" alt="arrow" style="width: 15%">
                         <img src="32.svg" alt="quick start 2" style="width: 20%">
                         <img src="34.svg" alt="arrow" style="width: 15%">
                         <img class="ml-4" src="33.svg" alt="quick start 3" style="width: 11%">
                     </div>
-                    <div class="quickstart__content d-flex justify-content-around">
-                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="1" data-intro="Click to try Roblox quiz game, leave Quiz ID blank!" href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" target="_blank">&nbsp;Try a Quiz Game&nbsp;</a>
-                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="2" data-intro="Click to create your own quiz and questions!" href="/quizzes/new?multipage=1" target="_blank">&nbsp;&nbsp;Create a Quiz&nbsp;&nbsp;</a>
-                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="3" data-intro="Create a class and enroll students!" href="/courses/new?multipage=1" target="_blank">&nbsp;&nbsp;Assign a Quiz&nbsp;&nbsp;</a>
+                    <div class="row quickstart__content d-flex justify-content-around">
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="6" data-intro="Now let's try a Roblox quiz game, leave Quiz ID blank!" href="https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices" target="_blank">&nbsp;Try a Quiz Game&nbsp;</a>
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="7" data-intro="Click to Create your own quiz and questions!" href="/quizzes/new?multipage=1" target="_blank">&nbsp;&nbsp;Create a Quiz&nbsp;&nbsp;</a>
+                        <a class="card-link quickstart__link btn__trans btn btn-outline-light" data-step="8" data-intro="Create a class and enroll students!" href="/courses/new?multipage=1" target="_blank">&nbsp;&nbsp;Assign a Quiz&nbsp;&nbsp;</a>
                     </div>                 
                 </div>
             </div>
-            <div class="card mb-2" data-aos="fade-left" data-aos-duration="1500">
+            <div class="card mb-2" data-aos="fade-left" data-aos-duration="1500" data-step="3" data-intro="All your customized quizzes shown here.">
                 <div class="card-header">
                     <h4 class="card-title">My Quizzes</h4>
                 </div>
@@ -114,10 +114,9 @@
                     <% } %>
                 </div>
             </div>
-            <div class="card mb-2" data-aos="fade-up" data-aos-duration="1500">
+            <div class="card mb-2" data-aos="fade-up" data-aos-duration="1500" data-step="4" data-intro="You can also search an existing public shared quiz from 'See More', click 'use this quiz' and tailor it.">
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title">Most Popular Public Quizzes</h4>
-                    <button style="border-radius: 50%" class="btn btn-outline-warning" data-container="body" data-toggle="popover" data-placement="left" title="Simply import public quizzes!" data-content="Search a quiz by keyword and click 'use this quiz'!">&nbsp;<i class="fas fa-info"></i>&nbsp;</button>
                 </div>
                 <div class="card-body">
                     <% quizzes.forEach(function(quiz){ %>
