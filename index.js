@@ -75,7 +75,8 @@ function ensureSecure(req, res, next) {
         next();
     } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
         //Redirect if not HTTP with original request URL
-        res.redirect('https://' + req.hostname + req.url);
+        // res.redirect('https://' + req.hostname + req.url);
+        res.redirect('https://' + req.headers.host + req.url);
     }
 }
 
