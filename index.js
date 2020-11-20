@@ -1,5 +1,4 @@
-const sslRedirect = require('heroku-ssl-redirect'), 
-      express = require("express"),
+const express = require("express"),
       app = express(),
       mongoose = require("mongoose"),
       flash = require ("connect-flash"),
@@ -24,7 +23,6 @@ const questionRoutes = require("./routes/questions"),
       shareRoutes = require("./routes/assignments")
 
 //extract data from request body and turn to JSON
-app.use(sslRedirect());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
