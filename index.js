@@ -69,7 +69,6 @@ app.use(function(req, res, next){
 
 //HTTPS redirect middleware
 function ensureSecure(req, res, next) {
-    status = status || 302
     //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
     if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
         //Serve App by passing control to the next middleware
@@ -77,7 +76,7 @@ function ensureSecure(req, res, next) {
     } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
         //Redirect if not HTTP with original request URL
         // res.redirect('https://' + req.hostname + req.url);
-        res.redirect(status,'https://' + req.hostname + req.originalUrl);
+        res.redirect('https://' + req.hostname + req.originalUrl);
     }
 }
 
