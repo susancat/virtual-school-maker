@@ -1,10 +1,10 @@
 <%- include("../partials/header") %>
 <%- include("../partials/vsmHeader") %>
-<div class="row mt-5" id="heading-jumbotron">
+<div class="row" id="heading-class">
     <div class="col-md-9">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" id="order3">
                     <div class="card mb-3 border-success">
                         <div class="card-header">
                             <p class="lead"><i class="fa fa-tasks" aria-hidden="true">&nbsp;&nbsp;</i>Assign a Quiz</p>  
@@ -62,11 +62,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" id="order1">
                     <div class="card border-success" data-step="1" data-intro="Students are enrolled automatically when they login the Roblox game with class ID, assigned quiz ID and Game Link/Private Server Link." data-position="bottom-middle-aligned">
                         <div class="card-body">
                             <h4 class='card-title d-flex justify-content-between mb-0'><span>Class Name: <%= course.name %>&nbsp;&nbsp;</span></h4>
-                            <a id="startButton" class="card-link btn btn-success btn__tour mb-1" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a>
+                            <a id="startButton" class="card-link btn btn-success btn__tour mt-2" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a>
                             <div class="row pt-3">
                                 <div class="col-sm">
                                     <h5>Class ID: <%= course.classID %></h5>
@@ -133,15 +133,15 @@
         </div>
     </div>
 <!-- right-side   -->
-    <div class="col-md-3">         
+    <div class="col-md-3" id="order2">         
         <div class="accordion" id="gameAccordion">
-            <div class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. Click a selected Roblox game first." data-position="left">
+            <div id="2" class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. Click a selected Roblox game first." data-position="left">
                 <div class="card-header">
                     <p class="lead"><i class="fa fa-gamepad" aria-hidden="true">&nbsp;&nbsp;</i>Choose a game</p>      
                 </div>
 
                 <p class="card-title mb-0" id="game1">
-                    <button class="btn btn-link btn-block text-left collapsed" style="font-size: 1.2rem;text-decoration: none" type="button" data-toggle="collapse" data-target="#quizTrivia" aria-expanded="false" aria-controls="quizTrivia">Quiz Run</button>
+                    <button class="btn btn-link btn-block text-left collapsed" style="font-size: 1.2rem;text-decoration: none" type="button" data-toggle="collapse" data-target="#quizTrivia" aria-expanded="false" aria-controls="quizTrivia">Quiz Trivia</button>
                 </p>
                 <div id="quizTrivia" class="collapse" aria-labelledby="game1" data-parent="#gameAccordion">
                     <div class="card-body">

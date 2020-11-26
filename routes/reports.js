@@ -85,12 +85,14 @@ router.put("/:report_id", middleware.isLoggedIn, async function(req,res){
                     const players2 = report.players.filter(x => x._id)
                     const difference = players1.filter(x => !players2.includes(x));
                     await Promise.all(difference.map(async (player) => {
+                        //need fix: now player with same ID but different other values would be identified as a different player
                         await Player.findById(player._id, async function(err, foundPlayer){
                             if(err){
                                 console.log(err)
                             } else {
                                 if (foundPlayer && (foundPlayer.quizID === report.quizid)) {
                                     try {
+                                        //how does it identify when add to set, only by id or by either key,value, it should update
                                         await report.players.addToSet(foundPlayer);
                                         // await report.save(); should not be there cause .save will save item paralellly
                                     } catch (err) {

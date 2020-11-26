@@ -7,7 +7,7 @@ const express = require("express"),
       logger = require('morgan'),
     //   createError = require('http-errors'),
       cookieParser = require('cookie-parser');
-      
+
 require('./services/passport');
 
 const questionRoutes = require("./routes/questions"),
@@ -22,7 +22,6 @@ const questionRoutes = require("./routes/questions"),
       reportRoutes = require("./routes/reports"),
       shareRoutes = require("./routes/assignments")
 
-//extract data from request body and turn to JSON
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -67,15 +66,14 @@ app.use(function(req, res, next){
     next(); //if no next, it will stop at middleware
 });
 
-//HTTPS redirect middleware
+//HTTPS redirect middleware,similar to logic used by heroku-ssl-redirect
 function ensureSecure(req, res, next) {
-    //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
+        // if https or local, no redirect
     if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
         //Serve App by passing control to the next middleware
         next();
     } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
-        //Redirect if not HTTP with original request URL
-        // res.redirect('https://' + req.hostname + req.url);
+        //if use req.url instead, auth/google/callback will get lost
         res.redirect('https://' + req.hostname + req.originalUrl);
     }
 }

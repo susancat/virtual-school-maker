@@ -9,7 +9,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Date</th>
                     <th scope="col">No.of players</th>
-                    <th class=""></td>
+                    <th class="" data-hint="Update the report to check latest data." data-hintPosition="top-right" data-position="right"></td>
                 </tr>
             </thead>
             <tbody>
@@ -82,4 +82,9 @@
         var courseid = $(this).data('courseid');
         var id = $(this).data('reportid');
     })
+</script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() { 
+      introJs().addHints()
+    });
 </script>

@@ -86,11 +86,19 @@
                                           <input type="hidden" name="image" value="<%= question.image %>">
                                           <button class="dropdown-item" type="submit">Delete Image</button>
                                       </form>
-                                      
+                                      <div class="dropdown-divider"></div>
+                                      <div class="input-group">
                                         <form id="imageForm" action="/quizzes/<%= quiz._id %>/questions/<%= question._id %>/image" method="POST" enctype="multipart/form-data">  
-                                          <input id="questionImage" class="dropdown-item" type="file" name="image">
-                                          <button type="submit" class="btn">Upload</button>                             
-                                      </form>                                        
+                                          <div class="custom-file">
+                                            <input id="questionImage" class="dropdown-item custom-file-input" type="file" name="image">
+                                            <label class="custom-file-label" for="questionImage">Choose image</label>
+                                          </div>
+                                          <div class="input-group-append">
+                                            <button type="submit" class="btn dropdown-item">Upload</button>   
+                                          </div>                                
+                                        </form> 
+                                      </div>
+                                                                               
                                   </div>
                               </div>   
                               <% } %>                             
