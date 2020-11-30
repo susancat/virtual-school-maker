@@ -3,28 +3,28 @@
 <div class="main">
     <!-- Title Section -->
     <div class="container-flex">
-        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.first_background_image %>); background-position: center; background-attachment: fixed; ">
-            <h1 class="display-4 text-center font-weight-bold text-light mt-5" ><%= page.page_header %></h1>
-            <h3 class="display-5 text-center font-weight-bold text-light mt-5"><%= page.page_subheader %></h3>
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(https://images.pexels.com/photos/3850243/pexels-photo-3850243.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center; background-attachment: fixed; ">
+            <h1 class="display-4 text-center font-weight-bold text-light mt-5" >Our Testimonials</h1>
+            <h3 class="display-5 text-center font-weight-bold text-light mt-5">Feedback from users just like you</h3>
             <div class="row mt-5 mb-5 w-50" style="margin-left: 25%;">
                 <div class="col-sm mt-3 text-center">
                     <a href="#teachers" id="teachers" style="text-decoration: none;">
                         <div class="d-inline-flex border border-light rounded" style="border-width: 3px !important;">
-                            <h3 class="text-center pl-2 pr-2 text-light font-weight-bold" id="testa_text"><%= page.button_text_1 %></h3>
+                            <h3 class="text-center pl-2 pr-2 text-light font-weight-bold" id="testa_text">Teachers</h3>
                         </div>
                     </a>
                 </div>
                 <div class="col-sm mt-3 text-center">
                     <a href="#testbtn" style="text-decoration: none;">
                         <div class="d-inline-flex border border-light rounded" style="border-width: 3px !important;">
-                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text"><%= page.button_text_2 %></h3>
+                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text">Parents</h3>
                         </div>
                     </a>
                 </div>
                 <div class="col-sm mt-3 text-center">
                     <a href="#homeschoolers" style="text-decoration: none;">
                         <div class="d-inline-flex border border-light rounded" style="text-align: center !important; border-width: 3px !important;">
-                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text"><%= page.button_text_3 %></h3>
+                            <h3 class="text-center text-light pl-2 pr-2 font-weight-bold" id="testa_text">Homeschoolers</h3>
                         </div>
                     </a>
                 </div>
@@ -34,16 +34,16 @@
     <!-- TESTING HEROKU -->
     <!-- Teachers -->
     <div class="container-flex">
-        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.first_section_background %>); background-position: center; background-attachment: fixed;">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(https://images.pexels.com/photos/3768129/pexels-photo-3768129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center; background-attachment: fixed;">
             <div class="container" id="testa_container">
-                <h1 class="text-left text-light font-weight-bold  mt-5" id="test_text"><%= page.first_section_header %></h1>
-                <h3 class="display-5 text-left text-light font-weight-bold  mt-5" id="test_text2"><%= page.first_section_subheader %></h3>
+                <h1 class="text-left text-light font-weight-bold  mt-5" id="test_text">Teachers</h1>
+                <h3 class="display-5 text-left text-light font-weight-bold  mt-5" id="test_text2">Hear from teachers who use our platform for their lessons</h3>
                 <a href="#collapseContent" id="testbtn" role="button" aria-expanded="false" aria-controls="collapseContent" class="btn font-weight-bold btn-primary mt-5 text-light" data-toggle="collapse" style="background: none; border-width: 3px; border-color:white; outline: none; ">
-                    <%= page.expand_button %>
+                    Read More
                 </a>
                 <div class="collapse" id="collapseContent" style="padding: 0;">
-                    <h1 class="text-light mt-5" style="margin-right: 10%;"><strong class="font-weight-bold"><%= page.name1 %></strong><%= page.first_section_text_head %></h1>
-                    <h3 class="text-light mt-5 mr-5" ><%= page.first_section_text %>
+                    <h1 class="text-light mt-5" style="margin-right: 10%;"><strong class="font-weight-bold">Jane Doe</strong>, 25, Hong Kong</h1>
+                    <h3 class="text-light mt-5 mr-5" >I've been using Virtual School Maker for my classes in Hong Kong ever since Covid-19 hit It's been really helpful during the periods of online learning. If you really need a platform to share meaningful games and monitor your students' progress then this platform is super helpful because not only is it engaging, but also really easy to maintain.
                     </h3>
                 </div>
             </div>
@@ -52,19 +52,19 @@
 
     <!-- Parents -->
     <div class="container-flex">
-        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.second_section_background %>); background-position: center; background-attachment: fixed;">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position: center; background-attachment: fixed;">
             <div class="container" id="testa_container_right">
-                <h1 class="text-right text-light font-weight-bold mt-5"><%= page.second_section_header %></h1>
-                <h3 class="display-5 text-right text-light font-weight-bold mt-5" ><%= page.second_section_subheader %></h3>
+                <h1 class="text-right text-light font-weight-bold mt-5">Parents</h1>
+                <h3 class="display-5 text-right text-light font-weight-bold mt-5" >Stories from parents who use the Virtual School Maker to both educate and entertain their children.</h3>
                 <div class="text-right">
                     <a href="#parentCollapse" role="button" aria-expanded="false" aria-controls="parentCollapse" class="btn font-weight-bold btn-primary mt-5 text-light" data-toggle="collapse" style="background: none; border-width: 3px; border-color: white; outline: none; ">
-                        <%= page.expand_button %>
+                        Read More
                     </a>
                 </div>
 
                 <div class="collapse" id="parentCollapse" style="direction: rtl;">
-                        <h1 class="text-light text-right mt-5"><strong class="font-weight-bold"><%= page.name2 %></strong><%= page.second_section_text_head %></h1>
-                        <h3 class="text-light text-right mt-5" style="margin-left: 10%;"><%= page.second_section_text %>
+                        <h1 class="text-light text-right mt-5"><strong class="font-weight-bold">Bill Gates</strong>, 65, USA</h1>
+                        <h3 class="text-light text-right mt-5" style="margin-left: 10%;">I've been using Virtual School Maker for children ever since Covid-19 hit. It's been really helpful during the periods of online learning. If you really need a platform to share meaningful games and monitor your child's progress then this platform is super helpful because not only is it engaging, but also really easy to maintain
                         </h3>
                 </div>
             </div>
@@ -73,17 +73,17 @@
 
     <!-- Homeschoolers -->
     <div class="container-flex" id="homeschoolers">
-        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(<%= page.third_section_background %>); background-position:center; background-attachment: fixed;">
+        <div class="jumbotron jumbotron-fluid mb-0" style="background-image: url(https://images.pexels.com/photos/4260325/pexels-photo-4260325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-position:center; background-attachment: fixed;">
             <div class="container" id="testa_container">
-                <h1 class="text-left text-dark font-weight-bold  mt-5"><%= page.third_section_header %></h1>
-                <h3 class="display-5 text-left text-dark font-weight-bold  mt-5" style="width: 80%;"><%= page.third_section_subheader %></h3>
+                <h1 class="text-left text-dark font-weight-bold  mt-5">Homeschoolers</h1>
+                <h3 class="display-5 text-left text-dark font-weight-bold  mt-5" style="width: 80%;">Hear from homeschoolers who teach their children with our unique platform</h3>
                 <a href="#homeCollapse" role="button" aria-expanded="false" aria-controls="homeCollapse" class="btn btn-primary mt-5 text-dark" data-toggle="collapse" style="background: none; border-width: 3px; border-color: #343a40 ; outline: none;">
-                    <%= page.expand_button %>
+                    Read More
                 </a>
 
                 <div class="collapse" id="homeCollapse">
-                    <h1 class="text-dark mt-5" style="width: 80%;"><strong class="font-weight-bold"><%= page.name3 %></strong><%= page.third_section_text_head %></h1>
-                    <h3 class="text-dark mt-5" style="margin-right: 10%;"><%= page.third_section_text %>
+                    <h1 class="text-dark mt-5" style="width: 80%;"><strong class="font-weight-bold">Paul McCartney</strong>, 78, UK</h1>
+                    <h3 class="text-dark mt-5" style="margin-right: 10%;">I've been using Virtual School Maker for my son's education ever since Covid-19 hit It's been really helpful during the periods of online learning. If you really need a platform to share meaningful games and monitor your child' progress then this platform is super helpful because not only is it engaging, but also really  easy to maintain.
                 </div>
             </div>
         </div>

@@ -51,6 +51,7 @@ app.use(require("express-session")({
     secret: "One again rusty wins",
     resave: false,
     saveUninitialized: false,
+    maxAge: Date.now() + (24 * 60 * 60 * 1000), 
     httpOnly: true,  // Don't let browser javascript access cookies.
     secure: true // Only use cookies over https.
 }));

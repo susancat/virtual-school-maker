@@ -4,7 +4,7 @@
 }
 /*------------*/
 body {
-    padding-top: 6rem;
+    padding-top: 5rem;
     overflow-x: hidden;
 }
 
@@ -125,6 +125,23 @@ rect.bar-rect { fill: green; }
         margin-top: 2% !important;
     }
 
+    #heading-class {
+      display: flex; 
+      flex-direction: column;
+    }
+
+    #order1 {
+      order: 1;
+      }
+      #order2 {
+        order: 2;
+        margin-top: 1rem;
+      }
+      #order3 {
+        order: 3;
+        margin-top: 1rem;
+      }
+
     #info-card {
         width: 90% !important;
         margin-left: auto;
@@ -196,6 +213,7 @@ rect.bar-rect { fill: green; }
     
       #lethal_jumbotron{
         background-size: auto 100% !important;
+        background-position: center;
       }
     
       #info_png {
@@ -319,3 +337,12 @@ rect.bar-rect { fill: green; }
       height: 20% !important;
     }
   }
+
+
+#end_button{
+  color: white;
+}
+#end_button:hover{
+  background-color: white;
+  color: grey !important;
+}
