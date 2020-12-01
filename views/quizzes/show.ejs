@@ -45,17 +45,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 text-left">
-                      <h4 class="">Questions</h4>
+                      <h4 class="">Questions
                       <a id="startButton" class="card-link btn btn-outline-success btn__tour" href="javascript:void(0);">New User Tour</a>
+                    </h4>
                     </div>
-                    <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
-                    <div class="ml-auto">
-                        <a data-step="1" data-intro="Create some questions to current quiz." data-disable-interaction="true" class="btn btn-success" data-toggle="modal" href="/quizzes/<%= quiz._id %>/questions/new" data-target="#newQuestion" style="transform: translateY(1px);"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Add Question</a>
-                        <a data-step="2" data-intro="Import existing questions to your quiz." data-disable-interaction="true" class="btn btn-success" href="/quizzes/<%= quiz._id %>/questionbank" target="_blank"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Question Bank</a>
+                </div>
+                <div class="row">
+                  <% if(currentUser && quiz.author.id.equals(currentUser._id)) { %>
+                    <div class="ml-auto mt-2">
+                        <a data-step="1" data-intro="Create some questions to current quiz." data-disable-interaction="true" class="btn btn-success mb-2" data-toggle="modal" href="/quizzes/<%= quiz._id %>/questions/new" data-target="#newQuestion" style="transform: translateY(1px);"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Add Question</a>
+                        <a data-step="2" data-intro="Import existing questions to your quiz." data-disable-interaction="true" class="btn btn-success mb-2" href="/quizzes/<%= quiz._id %>/questionbank" target="_blank"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Question Bank</a>
                     </div>
                     <% } %>
                 </div>
-                
                 <hr>
                 <% quiz.questions.forEach(function(question){ %>
                     <div class="card col-md-12 bg-light border-success mb-3">

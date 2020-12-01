@@ -4,7 +4,7 @@
     <div class="col-md-9">
         <div class="container">
             <div class="row">
-                <div class="col-md-4" id="order3">
+                <div class="col-xl-4 col-lg-8" id="order3">
                     <div class="card mb-3 border-success">
                         <div class="card-header">
                             <p class="lead"><i class="fa fa-tasks" aria-hidden="true">&nbsp;&nbsp;</i>Assign a Quiz</p>  
@@ -62,21 +62,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8" id="order1">
+                <div class="col-xl-8" id="order1">
                     <div class="card border-success" data-step="1" data-intro="Students are enrolled automatically when they login the Roblox game with class ID, assigned quiz ID and Game Link/Private Server Link." data-position="bottom-middle-aligned">
                         <div class="card-body">
                             <h4 class='card-title d-flex justify-content-between mb-0'><span>Class Name: <%= course.name %>&nbsp;&nbsp;</span></h4>
                             <a id="startButton" class="card-link btn btn-success btn__tour mt-2" href="javascript:void(0);">&nbsp;&nbsp;New User Tour&nbsp;&nbsp;</a>
                             <div class="row pt-3">
-                                <div class="col-sm">
-                                    <h5>Class ID: <%= course.classID %></h5>
-                                </div>
-                                <div class="col-sm">
-                                    <h5>Teacher: <%= course.teacher %></h5>
-                                </div>
-                                <div class="col-sm">
-                                    <h5>Subject: <%= course.subject %></h5>
-                                </div>
+                                <h5 class="col-md-4">Class ID: <%= course.classID %></h5>
+                                <h5 class="col-md-4">Teacher: <%= course.teacher %></h5>
+                                <h5 class="col-md-4">Subject: <%= course.subject %></h5>
                             </div>
                             <hr>
                             <p class="card-text"><%= course.description %></p>
@@ -133,7 +127,7 @@
         </div>
     </div>
 <!-- right-side   -->
-    <div class="col-md-3" id="order2">         
+    <div class="col-xl-3 col-lg-8" id="order2">         
         <div class="accordion" id="gameAccordion">
             <div id="2" class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. Click a selected Roblox game first." data-position="left">
                 <div class="card-header">
