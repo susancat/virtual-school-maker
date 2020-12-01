@@ -118,7 +118,7 @@ rect.bar-rect { fill: green; }
 
 @media(max-width:800px){
   .btn__trans {
-    font-size: .5rem;
+    font-size: .6rem;
   }
     #signinbox {
         width: 80% !important;
