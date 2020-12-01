@@ -20,7 +20,9 @@ const graphHeight = height - margin.top - margin.bottom;
 const svg = d3.select('.canvas')
   .append('svg')
   .attr('width', width)
-  .attr('height', height);
+  .attr('height', height)
+  .attr("viewBox", [0, 0, width, height].join(" "))
+
 const graph = svg.append('g')
   .attr('width', graphWidth)
   .attr('height', graphHeight)
