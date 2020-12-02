@@ -4,7 +4,7 @@
 }
 /*------------*/
 body {
-    padding-top: 5.5rem;
+    padding-top: 5.2rem;
     overflow-x: hidden;
 }
 
@@ -112,7 +112,7 @@ rect.bar-rect { fill: green; }
     text-align: center; 
     background-color: white; 
     background-repeat: no-repeat; 
-    background-size: 100%; 
+    background-size: 150%; 
     background-position: center; 
 }
 /* for tablet-land 1200px*/
@@ -136,6 +136,10 @@ rect.bar-rect { fill: green; }
 }
 /* phone: 800px */
 @media only screen and (max-width:50em){
+  .create_div{
+    width: 80% !important;
+  }
+
   .btn__trans {
     font-size: .6rem;
   }
@@ -188,153 +192,149 @@ rect.bar-rect { fill: green; }
     #navbar_thing {
         padding-left: 0 !important;
     }
-
-    #create_div{
-        width: 80% !important;
-    }
     #scroll_button {
         display: none;
       }
-      #down_arrow{
-        display: none;
-      }
+    #down_arrow{
+      display: none;
+    }
+  
+    #testa_text {
+      font-size: 5vw;
+    }
+    #first_jumbotron h1{font-size: 3vw;
+      margin-top: 10%;
+    }
+    #first_jumbotron {
+      margin-top: -5% !important;
+    }
+  
+    #wrapper{
+      display: none;
+    }
+    #info.png{
+      width: 80% !important;
+    }
+    .hidden_img{
+      display: block;
+    }
+    .shown_img{
+      display: none;
+    }
+  
+    .carousel-control-prev {
+      display: none;
+    }
+    .carousel-control-next {
+      display: none;
+    }
+    #games_jumbotron {
+      background-size: auto 100% !important;
+      background-position: center;
+    }
+  
+    #lethal_jumbotron{
+      background-size: auto 100% !important;
+      background-position: center;
+    }
+  
+    #info_png {
+      width: 80% !important;
+    }
+  
+    #info_image {
+      width: 100%;
+      height: 60%;
+    }
+    #info_box {
+      width: 100%;
+      border: none;
+      height: 25%;
+    }
+  
+    #info_box h1 {
+      font-size: 3vw !important;
+    }
+    #info_row {
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    #info_title{
+      font-size: 5vw;
+    }
+  
+    #info_h3{
+      font-size: 3vw;
+    }
+    #testa_container {
+      padding: 0;
+      margin-left: 10%;
+    }
     
-      #testa_text {
-        font-size: 5vw;
-      }
-      #first_jumbotron h1{font-size: 3vw;
-        margin-top: 10%;
-      }
-      #first_jumbotron {
-        margin-top: -5% !important;
-      }
+    #testa_container_right {
+      margin-right: 10% !important;
+    }
     
-      #wrapper{
-        display: none;
-      }
-      #info.png{
-        width: 80% !important;
-      }
-      .hidden_img{
-        display: block;
-      }
-      .shown_img{
-        display: none;
-      }
+    #info_box{
+      box-shadow: 3px 3px grey;
+    }
     
-      .carousel-control-prev {
-        display: none;
-      }
-      .carousel-control-next {
-        display: none;
-      }
-      #games_jumbotron {
-        background-size: auto 100% !important;
-        background-position: center;
-      }
+    #end_button:hover{
+      background-color: white;
+      color: grey;
+    }
     
-      #lethal_jumbotron{
-        background-size: auto 100% !important;
-        background-position: center;
-      }
+    #end_button {
+      color: white;
+    }
     
-      #info_png {
-        width: 80% !important;
-      }
+    .spot {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+        
+    #svg-wrapper {
+      margin-top: 0;
+      position: relative;
+      width: 150px;
+      height: 40px;
+      display: inline-block;
+      border-radius: 3px;
+      margin-left: 5px;
+      margin-right: 5px
+    }
     
-      #info_image {
-        width: 100%;
-        height: 60%;
-      }
-      #info_box {
-        width: 100%;
-        border: none;
-        height: 25%;
-      }
+    #shape {
+      stroke-width: 6px;
+      fill: transparent;
+      stroke: #009FFD;
+      stroke-dasharray: 85 400;
+      stroke-dashoffset: -220;
+      transition: 1s all ease;
+    }
     
-      #info_box h1 {
-        font-size: 3vw !important;
-      }
-      #info_row {
-        width: 100%;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      #info_title{
-        font-size: 5vw;
-      }
+    #text {
+      margin-top: -35px;
+      text-align: center;
+    }
     
-      #info_h3{
-        font-size: 3vw;
-      }
-      #testa_container {
-        padding: 0;
-        margin-left: 10%;
-      }
-      
-      #testa_container_right {
-        margin-right: 10% !important;
-      }
-      
-      #info_box{
-        box-shadow: 3px 3px grey;
-      }
-      
-      #end_button:hover{
-        background-color: white;
-        color: grey;
-      }
-      
-      #end_button {
-        color: white;
-      }
-      
-      .spot {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-      }
-          
-      #svg-wrapper {
-        margin-top: 0;
-        position: relative;
-        width: 150px;
-        height: 40px;
-        display: inline-block;
-        border-radius: 3px;
-        margin-left: 5px;
-        margin-right: 5px
-      }
-      
-      #shape {
-        stroke-width: 6px;
-        fill: transparent;
-        stroke: #009FFD;
-        stroke-dasharray: 85 400;
-        stroke-dashoffset: -220;
-        transition: 1s all ease;
-      }
-      
-      #text {
-        margin-top: -35px;
-        text-align: center;
-      }
-      
-      #text a {
-        color: white;
-        text-decoration: none;
-        font-weight: 100;
-        font-size: 1.1em;
-      }
-      
-      .svg-wrapper:hover #shape {
-        stroke-dasharray: 50 0;
-        stroke-width: 3px;
-        stroke-dashoffset: 0;
-        stroke: #06D6A0;
-      }
+    #text a {
+      color: white;
+      text-decoration: none;
+      font-weight: 100;
+      font-size: 1.1em;
+    }
+    
+    .svg-wrapper:hover #shape {
+      stroke-dasharray: 50 0;
+      stroke-width: 3px;
+      stroke-dashoffset: 0;
+      stroke: #06D6A0;
+    }
 }
 
 @media only screen and (min-width: 50em){

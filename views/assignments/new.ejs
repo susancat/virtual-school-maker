@@ -2,10 +2,10 @@
 <%- include("../partials/vsmHeader") %>
 <div class="container">
     <div class="row">
-        <h1 class="text-center" style="width:40%; margin: auto;">Share something with <%= course.name %> students</h1>
+        <h1 class="text-center create_div" style="width:40%; margin: auto;">Share something with <%= course.name %> students</h1>
     </div>
     <div class="row">
-        <div style="width:40%; margin: 25px auto;">
+        <div class="create_div" style="width:40%; margin: 25px auto;">
             <form action="/courses/<%= course._id %>/assignments" method="POST">   
                 <div class="form-group">
                     <input class="form-control" type="text" name="title" placeholder="Title (required)" required>

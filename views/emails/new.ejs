@@ -3,10 +3,10 @@
 
 <div class="container">
     <div class="row">
-        <h1 class="text-center" style="width:45%; margin: 25px auto;">Create a new email for <%= course.name%></h1>
+        <h1 class="text-center create_div" style="width:45%; margin: 25px auto;">Create a new email for <%= course.name%></h1>
     </div>
     <div class="row">
-        <div style="width:40%; margin: 25px auto;">
+        <div class="create_div" style="width:40%; margin: 25px auto;">
             <form action="/courses/<%= course._id %>/emails" method="POST">
                 <div class="form-group">
                     <textarea data-step="2" data-intro="Refresh this page, copy students' emails in." data-position="left" class="form-control" type="text" name="to" placeholder="Input students' email here, seperated by ',' (required)" required></textarea>

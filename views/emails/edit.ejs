@@ -3,8 +3,8 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Edit Email</h1>
-        <div style="width:30%; margin: 25px auto;">
+        <h1 class="create_div" style="text-align: center">Edit Email</h1>
+        <div class="create_div" style="width:40%; margin: 25px auto;">
             <form action="/courses/<%= course_id %>/emails/<%=email._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                     <input class="form-control" type="text" name="email[title]" value="<%=email.title %>" placeholder="Title">

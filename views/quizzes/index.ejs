@@ -49,17 +49,17 @@
                         
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                            <% if(quiz.public === false) { %>
-                                <span><i class="fa fa-eye" aria-hidden="true"></i> Visible to only you</span>
-                            <% } else { %>
-                                <span><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
-                            <% } %>
-                            <div class="row">
-                                <a href="/quizzes/<%= quiz._id %>" class="btn btn-xs btn-primary stretched-link mr-1">&nbsp;Edit&nbsp;</a>
-                                <form action="/quizzes/<%= quiz._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-xs btn-danger" style="z-index:2;position:relative;">Delete</button>
-                                </form>
-                            </div>
+                        <% if(quiz.public === false) { %>
+                            <span class="col-lg-6 col-sm-8"><i class="fa fa-eye" aria-hidden="true"></i> Visible to only you</span>
+                        <% } else { %>
+                            <span class="col-lg-6 col-sm-8"><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
+                        <% } %>
+                        <div class="row col-lg-6 col-sm-12">
+                            <a href="/quizzes/<%= quiz._id %>" class="btn btn-xs btn-primary stretched-link mr-1 mt-1">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                            <form action="/quizzes/<%= quiz._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-xs btn-danger mt-1" style="z-index:2;position:relative;">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             <% } %> 
