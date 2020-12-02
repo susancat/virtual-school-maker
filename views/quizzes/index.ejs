@@ -50,9 +50,9 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <% if(quiz.public === false) { %>
-                            <span class="col-lg-6 col-sm-8"><i class="fa fa-eye" aria-hidden="true"></i> Visible to only you</span>
+                            <span class="col-lg-6 col-sm-8 align-self-center"><i class="fa fa-eye" aria-hidden="true"></i> Visible to only you</span>
                         <% } else { %>
-                            <span class="col-lg-6 col-sm-8"><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
+                            <span class="col-lg-6 col-sm-8 align-self-center"><i class="fa fa-eye" aria-hidden="true"></i> Visible to the public</span>
                         <% } %>
                         <div class="row col-lg-6 col-sm-12">
                             <a href="/quizzes/<%= quiz._id %>" class="btn btn-xs btn-primary stretched-link mr-1 mt-1">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
