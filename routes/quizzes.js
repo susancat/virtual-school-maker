@@ -118,7 +118,7 @@ router.get("/play", async function(req, res){
         if(err){
             console.log(err);
         }else {
-            res.json(allQuizzes._id)
+            res.json(allQuizzes)
         }
     }) 
 });
