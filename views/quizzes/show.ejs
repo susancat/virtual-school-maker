@@ -6,7 +6,7 @@
         <img class="card-img-top ml-2" style="width: 80%;" id="info-image" src="data:<%=quiz.image.contentType%>;base64,<%= quiz.image.data %>" alt="">  
         <div class="card-body mt-2 ml-2" style="padding-right : 0;">
             <h4 class="d-flex justify-content-between">Quiz Name: <%= quiz.title%><span>
-              <div class="btn-group dropright" style="padding: 0;">
+              <!-- <div class="btn-group dropright" style="padding: 0;">
                 <button class="btn btn-link align-top" type="button" style="border-radius: 3px;text-decoration: none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-position="top">
                 <i class="fas fa-ellipsis-v"></i>
                 </button>
@@ -17,7 +17,7 @@
                     </form>
                         <button class="dropdown-item" data-toggle="modal" data-target="#uploadImage">Change Image</button>
                 </div>
-            </div> 
+            </div>  -->
             </span></h4>
             <h6>Category: <%= quiz.category%></h6>
             <h6 class="">Difficulty level: <%= quiz.level %></h6>
