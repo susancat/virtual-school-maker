@@ -113,16 +113,6 @@ router.get("/:id", middleware.isLoggedIn, async function(req, res){
     });
 });
 
-router.get("/play", async function(req, res){
-    await Quiz.find({}, function(err,allQuizzes){
-        if(err){
-            console.log(err);
-        }else {
-            res.json(allQuizzes)
-        }
-    }) 
-});
-
 router.get("/play/:id", async function(req, res){
     await Quiz.findById(req.params.id).populate("questions"). exec(function(err, foundQuiz){
         if(err) {

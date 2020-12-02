@@ -103,6 +103,16 @@ router.get("/logout", function(req, res){
     res.redirect("/");
 });
 
+router.get("/allQuizzes", async function(req, res){
+    await Quiz.find({}, function(err,allQuizzes){
+        if(err){
+            console.log(err);
+        }else {
+            res.json(allQuizzes)
+        }
+    }) 
+});
+
 router.get("/questionbank/:category", async function(req,res){
     await QuestionBank.find({category: `${req.params.category}`}, function(err,allQuestions){
         if(err) {
