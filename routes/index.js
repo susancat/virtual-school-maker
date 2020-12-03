@@ -9,6 +9,8 @@ const Player = require("../models/player");
 const Report = require("../models/report");
 const Share = require("../models/share");
 const middleware = require("../middleware");
+const keys = require('../config/keys');
+// const butter = require('buttercms')(keys.butterCMS);
 const butter = require('buttercms')('c50ea105ed2cdc44abe084a42fe997bca3ae187e');
 
 router.get('/', function(req, res, next) {

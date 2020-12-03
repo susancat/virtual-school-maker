@@ -7,7 +7,7 @@ const express = require("express"),
       logger = require('morgan'),
     //   createError = require('http-errors'),
       cookieParser = require('cookie-parser');
-
+      keys = require('./config/keys');
 require('./services/passport');
 
 const questionRoutes = require("./routes/questions"),
@@ -37,7 +37,8 @@ app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 
-const DATABASEURL="mongodb+srv://daltonlearninglab:cpFtJEN4u37dR7r@quiz-trivia.7h3bm.mongodb.net/quiz-trivia?retryWrites=true&w=majority";
+// const DATABASEURL=keys.mongoURI;
+const DATABASEURL='mongodb+srv://daltonlearninglab:cpFtJEN4u37dR7r@quiz-trivia.7h3bm.mongodb.net/quiz-trivia?retryWrites=true&w=majority';
 const LOCALDB="mongodb://localhost:27017/Quiz"
 mongoose.connect(DATABASEURL || LOCALDB, {
     useNewUrlParser: true,
@@ -48,7 +49,8 @@ mongoose.connect(DATABASEURL || LOCALDB, {
 
 //passport configuration
 app.use(require("express-session")({
-    secret: "One again rusty wins",
+    secret: 'One again rusty wins',
+    // secret: keys.cookieKey,
     resave: false,
     saveUninitialized: false,
     maxAge: Date.now() + (24 * 60 * 60 * 1000), 
@@ -91,6 +93,16 @@ app.use("/courses/:id/player-data", playerRoutes);
 app.use("/courses/:id/emails", emailRoutes);
 app.use("/courses/:id/reports", reportRoutes);
 app.use("/courses/:id/assignments", shareRoutes);
+
+// if (process.env.NODE_ENV === 'production') {
+//     //let express serve up priduction assets like main.css/js
+//     app.use(express.static('/build'));
+//     //if express doesnot recognize the route, serve up index.html
+//     const path = require('path');
+//     app.get('*', (req,res) => {
+//         res.sendFile(path.resolve(__dirname,'build', 'index.js'));
+//     });
+// }
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Virtual School Maker has started");
