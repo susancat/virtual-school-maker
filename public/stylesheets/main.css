@@ -232,7 +232,11 @@ rect.bar-rect { fill: green; }
       background-size: auto 100% !important;
       background-position: center;
     }
-  
+    #testimonial_jumbo{
+      background-size: auto 100% !important;
+      background-position: center;
+    }
+
     #lethal_jumbotron{
       background-size: auto 100% !important;
       background-position: center;
