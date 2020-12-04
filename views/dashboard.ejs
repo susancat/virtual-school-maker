@@ -138,8 +138,10 @@
 <%- include("./partials/footer") %>
 <script type="text/javascript">
 document.getElementById('startButton').onclick = function() {
-    introJs().addHints()
-    introJs().start()
+    introJs()
+    .addHints()
+    .start()
+    .setOption("hideNext",true)
 };
 </script>
 <script>

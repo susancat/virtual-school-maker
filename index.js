@@ -93,7 +93,9 @@ app.use("/courses/:id/player-data", playerRoutes);
 app.use("/courses/:id/emails", emailRoutes);
 app.use("/courses/:id/reports", reportRoutes);
 app.use("/courses/:id/assignments", shareRoutes);
-
+app.get('*', function(req, res){
+    res.status(404).render('404');
+  });
 // if (process.env.NODE_ENV === 'production') {
 //     //let express serve up priduction assets like main.css/js
 //     app.use(express.static('/build'));
