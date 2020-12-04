@@ -129,7 +129,7 @@
 <!-- right-side   -->
     <div class="col-xl-3 col-lg-8" id="order2">         
         <div class="accordion" id="gameAccordion">
-            <div id="2" class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. Click a selected Roblox game first." data-position="left">
+            <div id="2" class="card mr-3 mb-2 border-success" data-step="4" data-intro="Now let's try to share a game and assign a quiz to your class. CLICK a selected Roblox game first." data-position="left">
                 <div class="card-header">
                     <p class="lead"><i class="fa fa-gamepad" aria-hidden="true">&nbsp;&nbsp;</i>Choose a game</p>      
                 </div>
@@ -436,6 +436,7 @@ $('[data-toggle="popover"]').popover({
     document.getElementById('startButton').onclick = function() {
       introJs().addHints()  
       .setOption('doneLabel', 'Next page')
+      .setOption('hideNext', true)
       .start().
       oncomplete(function() { 
           $('#editLink').hide();

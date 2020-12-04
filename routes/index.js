@@ -174,4 +174,8 @@ router.get("/players/:id",async function(req,res){
     })
 })
 
+router.post("/updateGameLink", middleware.isLoggedIn, async function(req,res){
+    await Course.updateMany({}, {$set:{gamelink1: "https://www.roblox.com/games/6033864818/Beta-Quiz-Trivia"}
+    });
+});
 module.exports = router;

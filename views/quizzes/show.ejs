@@ -198,7 +198,7 @@
             </div>
             <div class="form-inline mb-2">
                 <label for="op1" style="font-size:1.5rem">Set to be publicly shared?&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input id="op1" class="form-control" type="checkbox" name="public" style="width: 1.5rem" checked value="true">
+                <input id="op1" class="form-control" type="checkbox" name="public" style="width: 1.5rem" unchecked value="false">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -264,7 +264,11 @@ document.addEventListener("DOMContentLoaded", function() {
   introJs().addHints()
 });
 document.getElementById('startButton').onclick = function() {  
-  introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+  introJs()
+  .setOption('doneLabel', 'Next page')
+  .setOption('hideNext', true)
+  .start()
+  .oncomplete(function() {
         window.location.href='/quizzes/<%= quiz._id %>/questionbank?multipage=1'      
     });
 };

@@ -33,7 +33,7 @@ const courseSchema = new Schema ({
         ref: "Email"
     }], 
     selectedServer: String,
-    gamelink1: { type: String, default: "https://www.roblox.com/games/5834860433/Quiz-Trivia-Quiz-Obby-Lethal-Choices"},
+    gamelink1: { type: String, default: "https://www.roblox.com/games/6033864818/Beta-Quiz-Trivia"},
     gamelink2: { type: String, default: "https://www.roblox.com/games/5887877906/Lobby-test-1" },
     gamelink3: String,
     serverlink1: String,

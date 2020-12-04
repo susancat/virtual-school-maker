@@ -33,7 +33,9 @@
 <%- include("../partials/footer") %>
 <script type="text/javascript">
     if (RegExp('multipage', 'gi').test(window.location.search)) {
-        introJs().start()
+        introJs()
+        .start()
+        .setOption('hideNext', true)
     }
     // let quizid = localStorage.getItem('quizid');
 // if (localStorage.getItem(quizid) != null) {
