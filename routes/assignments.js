@@ -54,6 +54,15 @@ router.post("/", middleware.isLoggedIn, async function(req, res){
         }
     });
 });
+router.get("/:assignment_id", middleware.isLoggedIn, function(req,res){
+    Share.findById(req.params.assignment_id, function(err, foundAssignment){
+        if(err) {
+            res.redirect("back");
+        } else {
+            res.render("assignments/show", {course_id: req.params.id, assignment: foundAssignment});
+        }
+    }) 
+});
 
 router.get("/:assignment_id/edit", middleware.isLoggedIn, function(req,res){
     Share.findById(req.params.assignment_id, function(err, foundAssignment){

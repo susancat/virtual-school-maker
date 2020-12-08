@@ -174,8 +174,20 @@ router.get("/players/:id",async function(req,res){
     })
 })
 
-router.post("/updateGameLink", middleware.isLoggedIn, async function(req,res){
-    await Course.updateMany({}, {$set:{gamelink1: "https://www.roblox.com/games/6033864818/Beta-Quiz-Trivia"}
+router.get("/allCourses/edit", middleware.checkAdmin, async function(req,res){
+    await Course.find({}, function(err, allCourses){
+        res.render("editLink", {quiz: allCourses});
     });
+    
 });
+
+router.put("/allCourses", middleware.checkAdmin, async function(req,res){
+    await Course.updateMany({}, req.body.course, function(err,allCourses){
+        if(err){
+            console.log(err)
+        }else {
+            req.flash("success", "Game links updated!")
+        }
+    });
+})
 module.exports = router;

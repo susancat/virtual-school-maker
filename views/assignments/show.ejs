@@ -1,0 +1,51 @@
+<%- include("../partials/header") %>
+<%- include("../partials/vsmHeader") %>
+
+<div class="container mt-5" id="heading-jumbotron">
+    <div class="card bg-light">
+        <div class="card-body mt-2 ml-2" style="padding-right : 0;">
+            <h4>Title: <a><%= assignment.title%></a></h4>
+            <h6><%= assignment.text%></h6>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+            <a class="btn btn-xs btn-success mr-1" data-toggle="modal" data-target="#copyID">&nbsp;Copy the ID&nbsp;</a>
+            <a href="/courses/<%= course_id %>/assignments/<%= assignment._id %>/edit" class="btn btn-xs btn-warning ml-auto mr-1" >&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+            <form action="/courses/<%= course_id %>/assignments/<%= assignment._id %>?_method=DELETE" method="POST">
+                <input type="submit" class="btn btn-xs btn-danger ml-auto" value="Delete">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="copyID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Pass the Assignment to Lobby Game!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Share the assignment ID with students: <span id="id"><strong ><%= assignment._id %></strong></span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="copy()">Copy the ID</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include("../partials/footer") %>
+<script>
+    function copy() {
+    let copyText = document.getElementById("id") 
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(copyText);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+}
+</script>

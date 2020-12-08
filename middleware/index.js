@@ -50,7 +50,7 @@ middlewareObj.checkQuestionOwnership = function (req, res, next) {
 }
 
 middlewareObj.isLoggedIn = function (req, res, next) {
-    if(req. isAuthenticated()){ //if logged in, show the next page
+    if(req.isAuthenticated()){ //if logged in, show the next page
         return next();
     }
     req.flash("error", "You need to be logged in to do that!");
@@ -79,4 +79,12 @@ middlewareObj.checkCourseOwnership = function (req, res, next) {
     }   
 }
 
+middlewareObj.checkAdmin = function(req,res,next) {
+    if(req.user.googleid == "114538460626021178534") {
+        next()
+    } else {
+        req.flash("error", "You need ADMIN autority to do that!");
+        res.redirect("back");
+    }
+}
 module.exports = middlewareObj;
