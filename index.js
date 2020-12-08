@@ -20,7 +20,8 @@ const questionRoutes = require("./routes/questions"),
       quizbankRoutes = require("./routes/quizbanks"),
       questionBankRoutes = require("./routes/questionbanks"),
       reportRoutes = require("./routes/reports"),
-      shareRoutes = require("./routes/assignments")
+      shareRoutes = require("./routes/assignments"),
+      gameRoutes = require("./routes/games")
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -93,6 +94,8 @@ app.use("/courses/:id/player-data", playerRoutes);
 app.use("/courses/:id/emails", emailRoutes);
 app.use("/courses/:id/reports", reportRoutes);
 app.use("/courses/:id/assignments", shareRoutes);
+app.use("/games", gameRoutes);
+
 app.get('*', function(req, res){
     res.status(404).render('404');
   });
