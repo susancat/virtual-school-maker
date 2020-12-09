@@ -48,7 +48,7 @@ router.get('/:pin', async (req, res) => {
 
     // If no game was found, then return "game not found" to user
     if (!game) {
-        res.json({message: "Game not found"})
+        res.status(404).json({message: "Game not found"})
     }
 
     // Find quiz associated with the game and return it
