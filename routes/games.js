@@ -12,8 +12,19 @@ const Quiz = require("../models/quiz")
 // JSON Structure: {name: <string>, quizId: <string>}
 router.post('/', async (req, res) => {
     // Generate a PIN and
-    // TODO: ensure it doesn't already exist
     const pin = generatePin()
+
+    // Ensure the pin doesn't already exist
+    while (true) {
+        const collision = await Game.findOne({pin: req.params.pin}).exec();
+        
+        // If no collision, break out.
+        if (!collision) {
+            break;
+        }
+        // Generate a new one
+        pin = generatePin()
+    }
 
     // TODO: Make QuizId into quiz name or something
     // QuizId is currently the database ID. Not user friendly
