@@ -38,8 +38,8 @@ app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 
-// const DATABASEURL=keys.mongoURI;
-const DATABASEURL='mongodb+srv://daltonlearninglab:cpFtJEN4u37dR7r@quiz-trivia.7h3bm.mongodb.net/quiz-trivia?retryWrites=true&w=majority';
+const DATABASEURL=keys.mongoURI;
+//const DATABASEURL='mongodb+srv://daltonlearninglab:cpFtJEN4u37dR7r@quiz-trivia.7h3bm.mongodb.net/quiz-trivia?retryWrites=true&w=majority';
 const LOCALDB="mongodb://localhost:27017/Quiz"
 mongoose.connect(DATABASEURL || LOCALDB, {
     useNewUrlParser: true,
